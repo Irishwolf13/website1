@@ -107,7 +107,11 @@
   position: relative;
 }
 
-.toolTip {
+.hint {
+  max-width: 500px;
+}
+
+/* .toolTip {
   position: absolute;
   left: 50%;
   top: 0;
@@ -136,4 +140,4 @@
   visibility: visible;
   opacity: 1;
   z-index: 5;
-}
+} */
