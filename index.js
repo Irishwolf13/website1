@@ -1,6 +1,8 @@
-let currrentWord = 'frank'
-
+let currrentWord = 'boring'
 const remoteUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"
+
+// Gather up the Troops
+const listContainer = document.querySelector('.synonim-List')
 
 function getRemoteWord(myWord) {
     fetch(`${remoteUrl}${myWord}`, {
@@ -11,8 +13,22 @@ function getRemoteWord(myWord) {
         },
     })
     .then(response => response.json()) 
-    .then(myWord => console.log(myWord))
-}
+    .then(myWord => {
+        //console.log(myWord)
+        myWord.forEach(element => {
+            element.meanings.forEach(element2 => {
+                if (element2.synonyms.length > 0) {
+                    element2.synonyms.forEach(myItem => {
+                        let li = document.createElement('li')
+                        li.innerHTML = myItem
+                        listContainer.appendChild(li)
+                    })
+                    //console.log(element2.synonyms)
+                }
+            })
+        })
+    })
+};
 
 function getWordList() {
     const fs = require('fs')
