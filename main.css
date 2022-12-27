@@ -27,9 +27,27 @@
 
 .titlebar {
   background-color: #8a2be2;
-  min-height: 5em;
+  min-height: 1em;
   width: 100%;
   position: relative;
   z-index: 1;
+  text-align: center;
+  font-size: 5em;
+}
+
+.synonym-List {
+  font-size: 2.0em;
+  margin-bottom: 1em;
+}
+
+.list-Item {
+  list-style: none;
+  font-size: 0.75em;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  height: 50px;
+  line-height: 50px;
+  margin-top: 0.3em;
   text-align: center;
 }
