@@ -1,31 +1,35 @@
 .flex-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 25px;
-  }
-  #topSection {
-    border-style: solid;
-    border-width: medium;
-    border-color: black;
-    padding-top: 25px;
-  }
-  h1 {
-    font-size: 105px;
-    text-align: center;
-    font-family: 'DM Serif Display', serif; /* This is a google font */
-    line-height: 1.1;
-    margin: 0px;
-    padding-bottom: 10px;
-  }
-  h2 {
-    text-align: center;
-    font-size: 25px;
-    font-family: 'DM Serif Display', serif; /* This is a google font */
-    margin: 0px;
-    padding-bottom: 20px;
-  }
-  .centerItem {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+  height: 75vh;
+  width: 100%;
+  position: relative;
+  background-color: #00ffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 0;
+}
+
+.circle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15em;
+  height: 15em;
+  border-radius: 0px 0px 0px 100%;
+  border-color:black;
+  border-left-style: solid;
+  border-left-width: 3px;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  z-index: 10;
+  background-color: #260c63;
+}
+
+.titlebar {
+  background-color: #8a2be2;
+  min-height: 5em;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
