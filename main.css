@@ -13,6 +13,18 @@
   padding-bottom: 100px;
 }
 
+.middleArea {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.sideBar {
+  flex: 1 1 25%
+}
+.blankSide {
+  flex: 1 1 25%
+}
+
 .notFound {
   background-color: rgb(255, 255, 255);
   cursor: pointer;
@@ -81,11 +93,12 @@
 }
 
 .synonym-List {
-  max-width: 500px;
+  /* max-width: 500px; */
   font-size: 2.0em;
   margin-bottom: 1em;
   display: flex;
   flex-wrap: wrap;
+  flex: 1 1 50%
 }
 
 .list-Item {
@@ -110,34 +123,3 @@
 .hint {
   max-width: 500px;
 }
-
-/* .toolTip {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-  background-color: #000000;
-  color: white;
-  white-space: nowrap;
-  padding: 10px, 10px;
-  border-radius: 7px;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  transition-delay: 0.5s;
-}
-.toolTip::before {
-  content: "";
-  position: absolute;
-  Left: 50%;
-  top: 100%;
-  transform: translateX(-50%);
-  border: 15px solid;
-  border-color: #000 #0000 #0000 #0000;
-}
-.list-Item:hover .toolTip {
-  top: -130%;
-  visibility: visible;
-  opacity: 1;
-  z-index: 5;
-} */

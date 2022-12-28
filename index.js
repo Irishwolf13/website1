@@ -7,10 +7,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currrentWord = myArrayOfWords[myRandomNumber];
     // My remote Url
     const remoteUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"
+
     // Place Holders for GameType and GameScore
     // Will replace with dynamic values when we get to them.
     let gameType = `Fill in the Blanks`
     let gameScore = `100`;
+
+    // Global Variables needed for hint word dashes
+    let wordHints = {};
+    let hintLetters = ''
+    let numberOfShownLetters = 1
 
     // Gather up the Troops(HTML elements)
     const listContainer = document.querySelector('.synonym-List')
@@ -34,50 +40,21 @@ document.addEventListener('DOMContentLoaded', async () => {
                 element.meanings.forEach(myMeanings => {
                     if (myMeanings.synonyms.length > 0) {
                         myMeanings.synonyms.forEach(mySynonym => {
+                            // Skip words with spaces
                             if (mySynonym.includes(" ")) {
-                                // Skip words with spaces
+                                // Do nothing
                             } else {
                                 let li = document.createElement('li')
                                 li.innerHTML = '????'
                                 li.classList.add('list-Item','notFound')
                                 li.id = `${mySynonym}`;
-
-                            // This code is for if I want to add back in the tooltip
-                                // let span = document.createElement('span')
-                                // span.classList.add('toolTip')
-                                // span.innerHTML = 'Click for hint!'
-                                // li.appendChild(span)
-                            // This code is for if I want to add back in the tooltip
                                 
                                 // This will get the definition of the synonym and display it in the 'hint' section
                                 li.addEventListener('click', (e) => {
-// Will want to figure out a way to dynamically change dashes to letters for extra hints.
-                                    // Add Dashes for the number of letters
-                                    let placeholder = e.target.id[0]
-                                    for (let i = 0; i < mySynonym.length -1; i++) {
-                                        placeholder += '-'
-                                    }
-                                    // Sets Text in the Box to hangman version of the word
-                                    e.target.innerHTML = placeholder
-                                    // This fetch is to get the definition of the synonym and display it in the 'hint' section
-                                    fetch(`${remoteUrl}${e.target.id}`, {
-                                        method: "GET",
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'Accept': 'application/json'
-                                        },
-                                    })
-                                    .then(response => response.json())
-                                    .then(mySynonymWord => {
-                                        mySynonymWord.forEach(element => {
-                                            hintText.innerHTML = element.meanings[0].definitions[0].definition
-                                        })
-                                    })
+                                    buttonClicked(e, mySynonym)
                                 })
                                 listContainer.appendChild(li)
-                                //console.log(mySynonym)
-                            }
-                            
+                            } 
                         })
                     }
                 })
@@ -100,7 +77,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     function setPoints() {
         gamePointScore.innerHTML = gameScore;
     }
-    //getWordList();
+
+    function buttonClicked(e, mySynonym) {
+        if (wordHints[e.target.id]) {
+            hintLetters = e.target.id.slice(0, wordHints[e.target.id])
+        } else {
+            wordHints[e.target.id] = 1
+            hintLetters = e.target.id.slice(0, 1)
+        }
+        // Add Dashes for the number of letters
+        for (let i = 0; i <= mySynonym.length -(wordHints[e.target.id]+1); i++) {
+            hintLetters += ' -'
+        }
+        wordHints[e.target.id] ++;
+
+        // Sets Text in the Box to hangman version of the word
+        e.target.innerHTML = hintLetters
+        // This fetch is to get the definition of the synonym and display it in the 'hint' section
+        fetch(`${remoteUrl}${e.target.id}`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        })
+        .then(response => response.json())
+        .then(mySynonymWord => {
+            mySynonymWord.forEach(element => {
+                // Definition of the synonym and display it in the 'hint' section
+                hintText.innerHTML = element.meanings[0].definitions[0].definition
+            })
+        })
+    }
+    
     setGameType();
     setPoints();
     getWordFillInBlanks(currrentWord);
