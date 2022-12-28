@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Place Holders for GameType and GameScore
     // Will replace with dynamic values when we get to them.
     let gameType = `Fill in the Blanks`
-    let gameScore = `100`;
+    let gameScore = 0;
 
     // Global Variables needed for hint word dashes
     let wordHints = {};
@@ -25,6 +25,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const gamePointScore = document.querySelector('.score')
     const hintText = document.querySelector('.hint')
 
+    function adjustMainWord() {
+        titleBar.innerHTML = currrentWord
+    }
+    function setGameType() {
+        gameTypeTitle.innerHTML = gameType;
+    }
+    function setPoints() {
+        gamePointScore.innerHTML = gameScore;
+    }
+
     // This is for fill in the blank gamestyle
     function getWordFillInBlanks(myWord) {
         fetch(`${remoteUrl}${myWord}`, {
@@ -36,49 +46,40 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
         .then(response => response.json()) 
         .then(myWord => {
+            let wordArray = {}
             myWord.forEach(element => {
                 element.meanings.forEach(myMeanings => {
                     if (myMeanings.synonyms.length > 0) {
                         myMeanings.synonyms.forEach(mySynonym => {
                             // Skip words with spaces
-                            if (mySynonym.includes(" ")) {
-                                // Do nothing
-                            } else {
-                                let li = document.createElement('li')
-                                li.innerHTML = '????'
-                                li.classList.add('list-Item','notFound')
-                                li.id = `${mySynonym}`;
-                                
-                                // This will get the definition of the synonym and display it in the 'hint' section
-                                li.addEventListener('click', (e) => {
-                                    buttonClicked(e, mySynonym)
-                                })
-                                listContainer.appendChild(li)
+                            if (!mySynonym.includes(" ")) {
+                                // This checks to see that the word hasn't already been added.
+                                if (wordArray[mySynonym] === undefined) {
+                                    wordArray[mySynonym] = true;
+
+                                    // Creates element and populates it with all that I need.
+                                    let li = document.createElement('li')
+                                    li.id = `${mySynonym}`;
+                                    li.classList.add('list-Item','notFound')
+                                    li.innerHTML = '????'
+                                    li.addEventListener('click', (e) => {
+                                        hintButtonClicked(e, mySynonym)
+                                    })
+                                    // Appened the whole deal to the DOM
+                                    listContainer.appendChild(li)
+                                }
                             } 
                         })
                     }
                 })
             })
-            
             // This should eventually get the word from the dictionary and make it the current word
             let newWord = currrentWord
             adjustMainWord(newWord)
         })
     };
 
-    function adjustMainWord() {
-        titleBar.innerHTML = currrentWord
-    }
-
-    function setGameType() {
-        gameTypeTitle.innerHTML = gameType;
-    }
-
-    function setPoints() {
-        gamePointScore.innerHTML = gameScore;
-    }
-
-    function buttonClicked(e, mySynonym) {
+    function hintButtonClicked(e, mySynonym) {
         if (wordHints[e.target.id]) {
             hintLetters = e.target.id.slice(0, wordHints[e.target.id])
         } else {
@@ -89,10 +90,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         for (let i = 0; i <= mySynonym.length -(wordHints[e.target.id]+1); i++) {
             hintLetters += ' -'
         }
+        if (wordHints[e.target.id] == mySynonym.length) {
+// This is where we need to set div as complete and change background color as if user inputted it correctly
+            console.log(wordHints)
+            gameScore += 100
+            setPoints()
+        }
         wordHints[e.target.id] ++;
-
         // Sets Text in the Box to hangman version of the word
         e.target.innerHTML = hintLetters
+
         // This fetch is to get the definition of the synonym and display it in the 'hint' section
         fetch(`${remoteUrl}${e.target.id}`, {
             method: "GET",
@@ -110,6 +117,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
     }
     
+    // This is where I actually run the code
     setGameType();
     setPoints();
     getWordFillInBlanks(currrentWord);
