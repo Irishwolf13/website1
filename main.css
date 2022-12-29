@@ -107,7 +107,17 @@
   margin-bottom: 1em;
   display: flex;
   flex-wrap: wrap;
-  flex: 1 1 50%
+  flex: 1 1 50%;
+}
+
+.synonym-List-Multiple {
+  /* max-width: 500px; */
+  font-size: 2.0em;
+  margin-bottom: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 5%;
+  flex-direction: column;
 }
 
 .list-Item {
@@ -136,4 +146,13 @@
 
 .newWordButton {
   margin-top: 10px;
+}
+
+/* *********** Multiple Choice Section ************** */
+
+.multipleChoiceButton {
+  padding: 1em 2em 1em 2em;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 }

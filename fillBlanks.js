@@ -65,6 +65,8 @@ function getWordFillInBlanks(myWord) {
 };
 
 function setHTMLforFillInBlanks() {
+    listContainer.classList.add('synonym-List')
+    listContainer.classList.remove('synonym-List-Multiple')
     let form = document.createElement("form")
     let input = document.createElement("input")
     input.setAttribute("type", "text")
