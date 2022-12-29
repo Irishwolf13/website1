@@ -2,41 +2,58 @@
 myArrayOfWords = ['Hot', 'Cold', 'Close', 'Far', 'Quiet', 'Loud', 'Missing', 'Help'];
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // This will choose a random first word from the array of words and make it the current word.
+    const remoteUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"    // My remote Url
+    // Choose a random first word from the array of words and make it the current word.
     let myRandomNumber = Math.floor(Math.random() * myArrayOfWords.length);
     let currrentWord = myArrayOfWords[myRandomNumber];
-    // My remote Url
-    const remoteUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"
-
-    // Place Holders for GameType and GameScore
-    // Will replace with dynamic values when we get to them.
-    let gameType = `Fill in the Blanks`
-    let gameScore = 0;
 
     // Global Variables needed for hint word dashes
+    let gameType = ``
+    let numberOfPoints = 0;
     let wordHints = {};
     let hintLetters = ''
-    let numberOfShownLetters = 1
 
     // Gather up the Troops(HTML elements)
     const listContainer = document.querySelector('.synonym-List')
     const titleBar = document.querySelector('.titlebar')
     const gameTypeTitle = document.querySelector('.difficulty')
     const gamePointScore = document.querySelector('.score')
-    const hintText = document.querySelector('.hint')
+    const gameInput = document.querySelector('.inputArea')
+    const newWordButtonHolder = document.querySelector('.newWordButtonHolder')
 
+    function createGetNewWordButton() {
+        const getNewWord = document.createElement('button')
+        getNewWord.innerHTML = 'Get New Word'
+        getNewWord.addEventListener('click', () => {
+            getNewRandomNumber()
+            setPoints(numberOfPoints)
+            setHTMLforFillInBlanks()
+            getWordFillInBlanks(currrentWord)
+            let myhint = document.querySelector('.hint')
+            myhint.innerHTML = "Click on a Box to get a hint!"
+        })
+        newWordButtonHolder.appendChild(getNewWord)
+    }
+    createGetNewWordButton()
+
+    function getNewRandomNumber() {
+        myRandomNumber = Math.floor(Math.random() * myArrayOfWords.length)
+        currrentWord = myArrayOfWords[myRandomNumber]
+    }
     function adjustMainWord() {
         titleBar.innerHTML = currrentWord
     }
-    function setGameType() {
-        gameTypeTitle.innerHTML = gameType;
+    function setPoints(numberOfPoints) {
+        gamePointScore.innerHTML = numberOfPoints;
     }
-    function setPoints() {
-        gamePointScore.innerHTML = gameScore;
+    function removeElementsFromDOM(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild)
+        }
     }
-
     // This is for fill in the blank gamestyle
     function getWordFillInBlanks(myWord) {
+        removeElementsFromDOM(listContainer) // Clears DOM for the following appends
         fetch(`${remoteUrl}${myWord}`, {
             method: "GET",
             headers: {
@@ -60,6 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                     // Creates element and populates it with all that I need.
                                     let li = document.createElement('li')
                                     li.id = `${mySynonym}`;
+                                    wordHints[mySynonym] = 1;
                                     li.classList.add('list-Item','notFound')
                                     li.innerHTML = '????'
                                     li.addEventListener('click', (e) => {
@@ -73,28 +91,65 @@ document.addEventListener('DOMContentLoaded', async () => {
                     }
                 })
             })
-            // This should eventually get the word from the dictionary and make it the current word
-            let newWord = currrentWord
-            adjustMainWord(newWord)
+            adjustMainWord(currrentWord)
+            gameTypeTitle.innerHTML = 'Fill in the Blanks';
         })
     };
 
-    function hintButtonClicked(e, mySynonym) {
-        if (wordHints[e.target.id]) {
-            hintLetters = e.target.id.slice(0, wordHints[e.target.id])
-        } else {
-            wordHints[e.target.id] = 1
-            hintLetters = e.target.id.slice(0, 1)
+    function setHTMLforFillInBlanks() {
+        let form = document.createElement("form")
+        let input = document.createElement("input")
+        input.setAttribute("type", "text")
+        input.setAttribute("name", "name")
+        input.setAttribute("value", "")
+        input.setAttribute("placeholder", "Guess Synonym here")
+        input.classList.add("input-text")
+        let submit = document.createElement("input")
+        submit.setAttribute("type", "submit")
+        submit.setAttribute("name", "submit")
+        submit.setAttribute("value", "submit")
+        submit.classList.add("submit")
+        form.appendChild(input)
+        form.appendChild(submit)
+        form.classList.add("form")
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+            foundWord(e)
+            e.target.reset()
+        })
+        let p = document.createElement("p")
+        p.classList.add("hint")
+        p.innerHTML = "Click on a Box to get a hint!"
+        removeElementsFromDOM(gameInput) // Clears DOM for the following appends
+        gameInput.appendChild(form)
+        gameInput.appendChild(p)
+    }
+
+    function foundWord(e) {
+        //console.log(wordHints)
+        if (wordHints[e.target.name.value]) {
+            let myDiv = document.querySelector(`#${e.target.name.value}`)
+            myDiv.classList.remove('notFound')
+            myDiv.classList.add('found')
+            myDiv.innerHTML = e.target.name.value;
+            wordHints[e.target.name.value] = (e.target.name.value.length +1);
+            numberOfPoints += 100
+            setPoints(numberOfPoints)
         }
+        
+    }
+    function hintButtonClicked(e, mySynonym) {
+        hintLetters = e.target.id.slice(0, wordHints[e.target.id])
         // Add Dashes for the number of letters
         for (let i = 0; i <= mySynonym.length -(wordHints[e.target.id]+1); i++) {
             hintLetters += ' -'
         }
         if (wordHints[e.target.id] == mySynonym.length) {
-// This is where we need to set div as complete and change background color as if user inputted it correctly
-            console.log(wordHints)
-            gameScore += 100
-            setPoints()
+            // This is where we need to set div as complete and change background color as if user inputted it correctly
+            // numberOfPoints += 100
+            e.target.classList.remove('notFound')
+            e.target.classList.add('found')
+            // setPoints(numberOfPoints)
         }
         wordHints[e.target.id] ++;
         // Sets Text in the Box to hangman version of the word
@@ -112,13 +167,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         .then(mySynonymWord => {
             mySynonymWord.forEach(element => {
                 // Definition of the synonym and display it in the 'hint' section
+                const hintText = document.querySelector('.hint')
                 hintText.innerHTML = element.meanings[0].definitions[0].definition
             })
         })
     }
     
-    // This is where I actually run the code
-    setGameType();
-    setPoints();
-    getWordFillInBlanks(currrentWord);
+    // Set up game scoreboard
+        //setPoints(numberOfPoints);
+    // Game Type of Fill in the Blanks
+        //setHTMLforFillInBlanks()
+        //getWordFillInBlanks(currrentWord);
+    // Game type of multiple choice
+
+    // Game type Match Synonyms
 })
