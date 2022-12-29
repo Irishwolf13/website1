@@ -38,7 +38,7 @@
   cursor: pointer;
 }
 .found {
-  background-color: rgb(239, 246, 179);
+  background-color: rgb(234, 255, 48);
   cursor: default;
 }
 .circle {
@@ -90,15 +90,15 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  font-size: 5em;
+  font-size: 3em;
   border-style: solid;
   border-color:black;
 }
 
 .gameTypeBar {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 3em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 4em;
 }
 
 .synonym-List {
