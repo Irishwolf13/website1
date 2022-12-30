@@ -6,6 +6,8 @@ const remoteUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"    // My re
 let myRandomNumber = Math.floor(Math.random() * myArrayOfWords.length);
 let currrentWord = myArrayOfWords[myRandomNumber];
 let numberOfPoints = 0;
+let _APIword = {};
+let _APIsynonyms = {};
 
 // Gather up the Troops(HTML elements)
 const myWordDisplay = document.querySelector('.gameTypeBar')
@@ -31,11 +33,35 @@ function removeElementsFromDOM(parent) {
         parent.removeChild(parent.firstChild)
     }
 }
-// Set up game scoreboard
-    //setPoints(numberOfPoints);
-// Game Type of Fill in the Blanks
-    //setHTMLforFillInBlanks()
-    //getWordFillInBlanks(currrentWord);
-// Game type of multiple choice
 
-// Game type Match Synonyms
+function infoFromAPI(myWord) {
+    const myURL = remoteUrl + myWord
+    fetch(myURL, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+    .then((response) => response.json())
+    .then((response) => {
+        _APIword = response
+    })
+}
+
+function getSynonyms(fromMyWord) {
+    fromMyWord.forEach(element => {
+        //console.log(element)
+        element.meanings.forEach(e => {
+            let myType = e.partOfSpeech
+            e.synonyms.forEach(s => {
+                if (!s.includes(" ")){
+                    _APIsynonyms[s] = myType;
+                }
+            })
+        })
+    });
+    console.log(_APIsynonyms)
+}
+
+infoFromAPI(currrentWord)

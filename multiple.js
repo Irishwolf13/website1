@@ -2,6 +2,8 @@ function createMultipleButton() {
     const getNewWord = document.createElement('button')
     getNewWord.innerHTML = 'Multiple Choice'
     getNewWord.addEventListener('click', () => {
+        //console.log(_APIword)
+        getSynonyms(_APIword)
         removeElementsFromDOM(gameInput)
         removeElementsFromDOM(listContainer)
         getNewRandomNumber()

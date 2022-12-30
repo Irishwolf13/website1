@@ -141,6 +141,7 @@
 
 .hint {
   max-width: 500px;
+  min-height: 50px;
   text-align: center;
 }
 
