@@ -8,6 +8,8 @@ let currrentWord = myArrayOfWords[myRandomNumber];
 let numberOfPoints = 0;
 let _APIword = {};
 let _APIsynonyms = {};
+let _APIantonyms = {};
+infoFromAPI(currrentWord)
 
 // Gather up the Troops(HTML elements)
 const myWordDisplay = document.querySelector('.gameTypeBar')
@@ -17,7 +19,7 @@ const gameInput = document.querySelector('.inputArea')
 const newWordButtonHolder = document.querySelector('.newWordButtonHolder')
 const listContainer = document.querySelector('.synonym-List')
 
-function getNewRandomNumber() {
+function getNewRandomWord() {
     myRandomNumber = Math.floor(Math.random() * myArrayOfWords.length)
     currrentWord = myArrayOfWords[myRandomNumber]
 }
@@ -34,6 +36,13 @@ function removeElementsFromDOM(parent) {
     }
 }
 
+function setUpNewWord() {
+    _APIsynonyms = {};
+    _APIantonyms = {};
+    getNewRandomWord()
+    infoFromAPI(currrentWord)
+}
+
 function infoFromAPI(myWord) {
     const myURL = remoteUrl + myWord
     fetch(myURL, {
@@ -43,25 +52,27 @@ function infoFromAPI(myWord) {
             'Accept': 'application/json'
         }
     })
-    .then((response) => response.json())
+    .then((apiReturn) => apiReturn.json())
     .then((response) => {
-        _APIword = response
-    })
-}
-
-function getSynonyms(fromMyWord) {
-    fromMyWord.forEach(element => {
-        //console.log(element)
-        element.meanings.forEach(e => {
-            let myType = e.partOfSpeech
-            e.synonyms.forEach(s => {
-                if (!s.includes(" ")){
-                    _APIsynonyms[s] = myType;
-                }
+        response.forEach(element => {
+            element.meanings.forEach(e => {
+                let myType = e.partOfSpeech
+                e.synonyms.forEach(s => {
+                    if (!s.includes(" ")){
+                        _APIsynonyms[s] = myType;
+                    }
+                })
+            })
+        });
+        response.forEach(element => {
+            element.meanings.forEach(e => {
+                let myType = e.partOfSpeech
+                e.antonyms.forEach(s => {
+                    if (!s.includes(" ")){
+                        _APIantonyms[s] = myType;
+                    }
+                })
             })
         })
-    });
-    console.log(_APIsynonyms)
+    })
 }
-
-infoFromAPI(currrentWord)
