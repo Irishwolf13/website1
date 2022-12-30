@@ -5,17 +5,17 @@ function createMultipleButton() {
         removeElementsFromDOM(gameInput)
         removeElementsFromDOM(listContainer)
         setPoints(numberOfPoints)
-        getWordMultipleChoice(currrentWord)
+        getWordMultipleChoice(currentWord)
+        console.log('iran')
     })
-    newWordButtonHolder.appendChild(getNewWord)
+    sideGameType.appendChild(getNewWord)
 }
-createMultipleButton()
 
 function getWordMultipleChoice(myWord) {
-    
+    console.log(myWord)
     listContainer.classList.remove('synonym-List')
     listContainer.classList.add('synonym-List-Multiple')
-
+    
     let selectionArray = Object.keys(_APIsynonyms)
     let selectionRandomNumber = Math.floor(Math.random() * selectionArray.length)
     let mySelection = selectionArray[selectionRandomNumber]
@@ -24,8 +24,11 @@ function getWordMultipleChoice(myWord) {
     button.classList.add('multipleChoiceButton')
     button.innerHTML = (mySelection).toLocaleUpperCase()
     listContainer.appendChild(button)
-    adjustMainWord(currrentWord, 'Multiple Choice')
-
+    
+    adjustMainWord(currentWord, 'Multiple Choice')
+    
     // Sets up next word
     setUpNewWord()
 }
+
+createMultipleButton()

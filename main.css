@@ -7,28 +7,64 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 0;
   border-style: solid;
   border-color:black;
   border-top-style: none;
   padding-bottom: 100px;
 }
 
+.mainMenu {
+  position: absolute;
+  top: 34px;
+  left: 2px;
+  z-index: 10;
+}
+.sideTitleCover {
+  width: 130px;
+  height: 400px;
+  background-color: #00ffff;
+  position: absolute;
+  top: 62px;
+  left: 1px;
+  z-index: 2;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.sideTitleContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  left: 10px;
+  opacity: 100;
+}
+.sideTitleContainer * {
+  display: flex;
+  flex-direction: column;
+}
+.sideTitleContainer div div {
+  font-size: larger;
+  font-weight: bold; 
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border-bottom: black;
+  border-bottom-style: dashed;
+}
+
 .middleArea {
-  width: 100%;
+  width: 50%;
   display: flex;
   flex-wrap: wrap;
+  z-index: 3;
+
 }
-.sideBar {
-  flex: 1 1 25%
+.inputArea {
+  z-index: 3;
 }
 .form {
   justify-content: center;
   align-items: center;
   display: flex;
-}
-.blankSide {
-  flex: 1 1 25%
 }
 .startButton {
   font-size: 5em;
@@ -84,9 +120,11 @@
 }
 
 .titlebar {
-  background-color: #8a2be2;
+  background-color: #00AFB9;
   min-height: 1em;
-  width: 100%;
+  width: 60%;
+  padding-left: 20%;
+  padding-right: 20%;
   position: relative;
   z-index: 1;
   text-align: center;
@@ -99,6 +137,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 4em;
+  z-index: 3;
 }
 
 .synonym-List {
@@ -157,3 +196,65 @@
   align-items: center;
   margin-bottom: 10px;
 }
+
+/*  *********** Toggle buttons Timer and Dark Theme *********** */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #000000;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #000000;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/*  *********** END Toggle buttons Timer and Dark Theme *********** */

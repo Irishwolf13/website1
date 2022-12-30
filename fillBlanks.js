@@ -9,15 +9,14 @@ function createBlanksButton() {
     getNewWord.addEventListener('click', () => {
         removeElementsFromDOM(gameInput) // Clears DOM
         setPoints(numberOfPoints)
-        adjustMainWord(currrentWord, 'Fill in the Blanks')
-        setHTMLforFillInBlanks()
-        getWordFillInBlanks(currrentWord)
+        adjustMainWord(currentWord, 'Fill in the Blanks')
+        setDOMforFillInBlanks()
+        getWordFillInBlanks(currentWord)
         let myhint = document.querySelector('.hint')
         myhint.innerHTML = "Click on a Box to get a hint!"
     })
-    newWordButtonHolder.appendChild(getNewWord)
+    sideGameType.appendChild(getNewWord)
 }
-createBlanksButton()
 
 // This is for fill in the blank gamestyle
 function getWordFillInBlanks(myWord) {
@@ -38,7 +37,7 @@ function getWordFillInBlanks(myWord) {
     setUpNewWord()
 };
 
-function setHTMLforFillInBlanks() {
+function setDOMforFillInBlanks() {
     listContainer.classList.add('synonym-List')
     listContainer.classList.remove('synonym-List-Multiple')
     let form = document.createElement("form")
@@ -48,13 +47,15 @@ function setHTMLforFillInBlanks() {
     input.setAttribute("value", "")
     input.setAttribute("placeholder", "Guess Synonym here")
     input.classList.add("input-text")
+    form.appendChild(input)
+
     let submit = document.createElement("input")
     submit.setAttribute("type", "submit")
     submit.setAttribute("name", "submit")
     submit.setAttribute("value", "submit")
     submit.classList.add("submit")
-    form.appendChild(input)
     form.appendChild(submit)
+    
     form.classList.add("form")
     form.addEventListener("submit", (e) => {
         e.preventDefault()
@@ -117,27 +118,4 @@ function hintButtonClicked(e, mySynonym) {
     })
 }
 
-// function dealWithElements(element, myArray) {
-//     element.meanings.forEach(myMeanings => {
-//         if (myMeanings.synonyms.length > 0) {
-//             myMeanings.synonyms.forEach(mySynonym => { 
-//                 if (!mySynonym.includes(" ")) { // Skip words with spaces
-//                     if (myArray[mySynonym] === undefined) {  // Word hasn't already been added.
-//                         myArray[mySynonym] = true;
-
-//                         let button = document.createElement('button')
-//                         button.id = `${mySynonym}`;
-//                         wordHints[mySynonym] = 1;
-//                         button.classList.add('list-Item','notFound')
-//                         button.innerHTML = '????'
-//                         button.addEventListener('click', (e) => {
-//                             hintButtonClicked(e, mySynonym)
-//                         })
-//                         // Appened the whole deal to the DOM
-//                         listContainer.appendChild(button)
-//                     }
-//                 } 
-//             })
-//         }
-//     })
-// }
+createBlanksButton()
