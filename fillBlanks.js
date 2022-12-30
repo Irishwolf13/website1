@@ -33,34 +33,9 @@ function getWordFillInBlanks(myWord) {
     .then(myWord => {
         let wordArray = {}
         myWord.forEach(element => {
-            element.meanings.forEach(myMeanings => {
-                if (myMeanings.synonyms.length > 0) {
-                    myMeanings.synonyms.forEach(mySynonym => {
-                        // Skip words with spaces
-                        if (!mySynonym.includes(" ")) {
-                            // This checks to see that the word hasn't already been added.
-                            if (wordArray[mySynonym] === undefined) {
-                                wordArray[mySynonym] = true;
-
-                                // Creates element and populates it with all that I need.
-                                let li = document.createElement('li')
-                                li.id = `${mySynonym}`;
-                                wordHints[mySynonym] = 1;
-                                li.classList.add('list-Item','notFound')
-                                li.innerHTML = '????'
-                                li.addEventListener('click', (e) => {
-                                    hintButtonClicked(e, mySynonym)
-                                })
-                                // Appened the whole deal to the DOM
-                                listContainer.appendChild(li)
-                            }
-                        } 
-                    })
-                }
-            })
+            dealWithElements(element, wordArray)
         })
-        adjustMainWord(currrentWord)
-        gameDifficulty.innerHTML = 'Fill in the Blanks';
+        adjustMainWord(currrentWord, 'Fill in the Blanks')
     })
 };
 
@@ -140,5 +115,30 @@ function hintButtonClicked(e, mySynonym) {
             const hintText = document.querySelector('.hint')
             hintText.innerHTML = element.meanings[0].definitions[0].definition
         })
+    })
+}
+
+function dealWithElements(element, myArray) {
+    element.meanings.forEach(myMeanings => {
+        if (myMeanings.synonyms.length > 0) {
+            myMeanings.synonyms.forEach(mySynonym => { 
+                if (!mySynonym.includes(" ")) { // Skip words with spaces
+                    if (myArray[mySynonym] === undefined) {  // Word hasn't already been added.
+                        myArray[mySynonym] = true;
+
+                        let button = document.createElement('button')
+                        button.id = `${mySynonym}`;
+                        wordHints[mySynonym] = 1;
+                        button.classList.add('list-Item','notFound')
+                        button.innerHTML = '????'
+                        button.addEventListener('click', (e) => {
+                            hintButtonClicked(e, mySynonym)
+                        })
+                        // Appened the whole deal to the DOM
+                        listContainer.appendChild(button)
+                    }
+                } 
+            })
+        }
     })
 }

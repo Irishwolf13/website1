@@ -7,9 +7,7 @@ function createMultipleButton() {
         getNewRandomNumber()
         setPoints(numberOfPoints)
         let div = document.createElement('div')
-        //div.innerHTML = 'Frank'
         listContainer.appendChild(div)
-        //myWordDisplay.innerHTML = 'Frank'
         gameDifficulty.innerHTML = 'Multiple Choice'
         getWordMultipleChoice(currrentWord)
     })
@@ -32,10 +30,8 @@ function getWordMultipleChoice(myWord) {
             element.meanings.forEach(myMeanings => {
                 if (myMeanings.synonyms.length > 0) {
                     myMeanings.synonyms.forEach(mySynonym => {
-                        // Skip words with spaces
-                        if (!mySynonym.includes(" ")) {
-                            // This checks to see that the word hasn't already been added.
-                            if (wordArray[mySynonym] === undefined) {
+                        if (!mySynonym.includes(" ")) {  // Skip words with spaces
+                            if (wordArray[mySynonym] === undefined) {  // Word hasn't already been added.
                                 wordArray[mySynonym] = true;
                             }
                         } 
@@ -45,7 +41,7 @@ function getWordMultipleChoice(myWord) {
         })
         listContainer.classList.remove('synonym-List')
         listContainer.classList.add('synonym-List-Multiple')
-        
+        console.log('iran')
         let selectionArray = Object.keys(wordArray)
         let selectionRandomNumber = Math.floor(Math.random() * selectionArray.length)
         let mySelection = selectionArray[selectionRandomNumber]
@@ -54,7 +50,6 @@ function getWordMultipleChoice(myWord) {
         button.classList.add('multipleChoiceButton')
         button.innerHTML = (mySelection).toLocaleUpperCase()
         listContainer.appendChild(button)
-        adjustMainWord(currrentWord)
-        gameDifficulty.innerHTML = 'Multiple Choice';
+        adjustMainWord(currrentWord, 'Multiple Choice')
     })
 }

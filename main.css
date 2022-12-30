@@ -34,7 +34,7 @@
   font-size: 5em;
 }
 .notFound {
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
   cursor: pointer;
 }
 .found {
