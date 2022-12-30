@@ -1,18 +1,16 @@
 function createMultipleButton() {
     const getNewWord = document.createElement('button')
-    getNewWord.innerHTML = 'Multiple Choice'
+    getNewWord.innerHTML = 'Definition Game'
     getNewWord.addEventListener('click', () => {
         removeElementsFromDOM(gameInput)
         removeElementsFromDOM(listContainer)
         setPoints(numberOfPoints)
         getWordMultipleChoice(currentWord)
-        console.log('iran')
     })
     sideGameType.appendChild(getNewWord)
 }
 
 function getWordMultipleChoice(myWord) {
-    console.log(myWord)
     listContainer.classList.remove('synonym-List')
     listContainer.classList.add('synonym-List-Multiple')
     

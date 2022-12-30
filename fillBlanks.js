@@ -70,7 +70,6 @@ function setDOMforFillInBlanks() {
 }
 
 function foundWord(e) {
-    //console.log(wordHints)
     let myLowerCase = (e.target.name.value).toLowerCase()
     if (wordHints[myLowerCase]) {
         let myDiv = document.querySelector(`#${myLowerCase}`)

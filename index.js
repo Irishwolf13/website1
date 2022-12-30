@@ -1,5 +1,5 @@
 // My test array of words because I can't seem to get an array of words from the API.
-const myArrayOfWords = ['Hot', 'Cold', 'Fair', 'Far', 'Quiet', 'Loud', 'Missing', 'Help'];
+const myArrayOfWords = ['hot', 'Cold', 'Fair', 'Far', 'Quiet', 'Loud', 'Missing', 'Help'];
 
 const remoteUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"    // My remote Url
 // Choose a random first word from the array of words and make it the current word.
@@ -92,4 +92,5 @@ function infoFromAPI(myWord) {
             })
         })
     })
+    console.log(_APIsynonyms)
 }
