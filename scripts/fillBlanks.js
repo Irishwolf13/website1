@@ -95,8 +95,15 @@ function foundWord(e) {
         myDiv.classList.remove('notFound')
         myDiv.classList.add('found')
         myDiv.innerHTML = (myLowerCase).toUpperCase();
+        if (wordHints[myLowerCase] == 1) {
+            numberOfPoints += 100
+        }else if(wordHints[myLowerCase] < myLowerCase.length) {
+            numberOfPoints += 50
+        }else {
+            console.log(wordHints[myLowerCase])
+            console.log('my length', myLowerCase.length)
+        }
         wordHints[myLowerCase] = (myLowerCase.length +1);
-        numberOfPoints += 100
         setPoints(numberOfPoints)
     }
     

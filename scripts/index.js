@@ -26,6 +26,9 @@ const optionTimer = document.querySelector('.optionTimer')
 const optionDark = document.querySelector('.optionDark')
 const optionMenuButton = document.querySelector('.optionMenuButton')
 const startButton = document.querySelector('.startButton')
+startButton.addEventListener('click', () => {
+    startButton.remove(); // This is only a placeholder so it deletes itself.
+})
 optionMenuButton.addEventListener('click', () => {
     hideShowOptions()
 })
