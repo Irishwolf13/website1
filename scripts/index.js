@@ -10,32 +10,48 @@ let _APIword = {};
 let _APIsynonyms = {};
 let _APIantonyms = {};
 infoFromAPI(currentWord)
-let coverVis = true;
+let isVisible = false;
+let darkTheme = false;
 
 // Gather up the Troops(HTML elements)
 const myWordDisplay = document.querySelector('.gameTypeBar')
 const gameDifficulty = document.querySelector('.difficulty')
 const gamePointScore = document.querySelector('.score')
 const gameInput = document.querySelector('.inputArea')
-const sideTitleContainer = document.querySelector('.sideTitleContainer')
-const sideGameType = document.querySelector('.sideGameType')
-const sideDifficulty = document.querySelector('.sideDifficulty')
-const sideTimer = document.querySelector('.sideTimer')
-const sideDark = document.querySelector('.sideDark')
 const listContainer = document.querySelector('.synonym-List')
-
-const cover = document.querySelector('.sideTitleCover')
-const mainMenu = document.querySelector('.mainMenu')
-mainMenu.addEventListener('click', () => {
-    if (coverVis == true) {
-        cover.style.height = '0px'
-        coverVis = false
-    } else if (coverVis == false) {
-        cover.style.height = '400px'
-        coverVis = true
-    }
+const optionContainer = document.querySelector('.optionContainer')
+const optionGameType = document.querySelector('.optionGameType')
+const optionDifficulty = document.querySelector('.optionDifficulty')
+const optionTimer = document.querySelector('.optionTimer')
+const optionDark = document.querySelector('.optionDark')
+const optionMenuButton = document.querySelector('.optionMenuButton')
+optionMenuButton.addEventListener('click', () => {
+    hideShowOptions()
 })
-
+const darkThemeSwtich = document.getElementById('darkThemeSwtich')
+darkThemeSwtich.addEventListener('click', () => {
+    console.log('Iran')
+})
+const timerSwitch = document.getElementById('timerSwitch')
+timerSwitch.addEventListener('click', () => {
+    console.log('Iran')
+})
+    
+function applyDarkTheme() {
+    
+}
+    
+function hideShowOptions() {
+    if (isVisible) {
+        optionContainer.style.height = '0px'
+        optionContainer.style.visibility = 'hidden'
+        isVisible = false
+    } else {
+        optionContainer.style.height = '200px'
+        optionContainer.style.visibility = 'visible'
+        isVisible = true
+    }
+}
 function getNewRandomWord() {
     myRandomNumber = Math.floor(Math.random() * myArrayOfWords.length)
     currentWord = myArrayOfWords[myRandomNumber]

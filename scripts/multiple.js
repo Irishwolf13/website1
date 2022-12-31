@@ -7,7 +7,7 @@ function createMultipleButton() {
         setPoints(numberOfPoints)
         getWordMultipleChoice(currentWord)
     })
-    sideGameType.appendChild(getNewWord)
+    optionGameType.appendChild(getNewWord)
 }
 
 function getWordMultipleChoice(myWord) {

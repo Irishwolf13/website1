@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="./main.css">
-    <script defer src="index.js"></script>
-    <script defer src="multiple.js"></script>
-    <script defer src="fillBlanks.js"></script>
+    <script defer src="scripts/index.js"></script>
+    <script defer src="scripts/multiple.js"></script>
+    <script defer src="scripts/fillBlanks.js"></script>
 </head>
 <body>
     <div class="flex-container">
+      <!-- This contains the score circle -->
         <div class="circle">
             <div class="pointsTitle">Points</div>
             <div class="score"></div>
             <div class="difficulty"></div>
         </div>
+        <!-- Head title bar stuff -->
         <div class="titlebar">SynonymGame</div>
-        <button class="mainMenu">Main Menu</button>
-        <div class="sideTitleCover"></div>
-        <div class="sideTitleContainer">
-          <div class="sideGameType">
+        <button class="optionMenuButton">Options</button>
+        <div class="optionContainer">
+          <div class="optionGameType">
             <div>Game Type</div>
           </div>
-          <div class="sideDifficulty">
+          <div class="optionDifficulty">
             <div>Difficulty</div>
             <button>Easy</button>
             <button>Medium</button>
             <button>Hard</button>
           </div>
-          <div class="sideTimer">
+          <div class="optionTimer">
             <div>Timer</div>
             <label class="switch">
                 <input type="checkbox" checked>
-                <span class="slider round"></span>
+                <span id="timerSwitch" class="slider round"></span>
             </label>
           </div>
-          <div class="sideDark">
+          <div class="optionDark">
             <div>Dark Theme</div>
             <label class="switch">
                 <input type="checkbox" checked>
-                <span class="slider round"></span>
+                <span id="darkThemeSwtich" class="slider round"></span>
             </label>
           </div>
         </div>

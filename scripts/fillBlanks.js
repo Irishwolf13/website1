@@ -15,7 +15,7 @@ function createBlanksButton() {
         let myhint = document.querySelector('.hint')
         myhint.innerHTML = "Click on a Box to get a hint!"
     })
-    sideGameType.appendChild(getNewWord)
+    optionGameType.appendChild(getNewWord)
 }
 
 // This is for fill in the blank gamestyle
