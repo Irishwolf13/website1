@@ -30,6 +30,25 @@ function getWordFillInBlanks(myWord) {
         button.addEventListener('click', (e) => {
             hintButtonClicked(e, mySynonym)
         })
+        button.addEventListener('mouseover', (e) => {
+            // This fetch is to get the definition of the synonym and display it in the 'hint' section
+            // *************** Needs a check for a failed request ******************************************
+            fetch(`${remoteUrl}${e.target.id}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(mySynonymWord => {
+                mySynonymWord.forEach(element => {
+                    // Definition of the synonym and display it in the 'hint' section
+                    const hintText = document.querySelector('.hint')
+                    hintText.innerHTML = element.meanings[0].definitions[0].definition
+                })
+            })
+        })
         // Appened the whole deal to the DOM
         listContainer.appendChild(button)
     })
@@ -89,32 +108,12 @@ function hintButtonClicked(e, mySynonym) {
         hintLetters += ' -'
     }
     if (wordHints[e.target.id] == mySynonym.length) {
-        // This is where we need to set div as complete and change background color as if user inputted it correctly
-        // numberOfPoints += 100
         e.target.classList.remove('notFound')
         e.target.classList.add('found')
-        // setPoints(numberOfPoints)
     }
     wordHints[e.target.id] ++;
     // Sets Text in the Box to hangman version of the word
     e.target.innerHTML = hintLetters
-
-    // This fetch is to get the definition of the synonym and display it in the 'hint' section
-    fetch(`${remoteUrl}${e.target.id}`, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-    })
-    .then(response => response.json())
-    .then(mySynonymWord => {
-        mySynonymWord.forEach(element => {
-            // Definition of the synonym and display it in the 'hint' section
-            const hintText = document.querySelector('.hint')
-            hintText.innerHTML = element.meanings[0].definitions[0].definition
-        })
-    })
 }
 
 createBlanksButton()

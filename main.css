@@ -16,6 +16,7 @@
   font-size: 1.2em;
 }
 .optionContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   visibility: hidden;
@@ -25,9 +26,16 @@
   padding: 0 20px 10px 20px;
   background-color: #b09ddc;
 }
-
 .optionContainer div div {
   font-size: 1.5em;
+}
+.optionStartButton {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.optionStartButton img {
+  width: 90px
 }
 
 .middleArea {
@@ -46,8 +54,9 @@
   display: flex;
 }
 .startButton {
-  font-size: 5em;
+  cursor: pointer;
 }
+
 .notFound {
   /* background-color: rgb(255, 255, 255); */
   cursor: pointer;

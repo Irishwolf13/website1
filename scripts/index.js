@@ -25,20 +25,24 @@ const optionDifficulty = document.querySelector('.optionDifficulty')
 const optionTimer = document.querySelector('.optionTimer')
 const optionDark = document.querySelector('.optionDark')
 const optionMenuButton = document.querySelector('.optionMenuButton')
+const startButton = document.querySelector('.startButton')
 optionMenuButton.addEventListener('click', () => {
     hideShowOptions()
 })
 const darkThemeSwtich = document.getElementById('darkThemeSwtich')
 darkThemeSwtich.addEventListener('click', () => {
-    console.log('Iran')
+    applyDarkTheme()
 })
 const timerSwitch = document.getElementById('timerSwitch')
 timerSwitch.addEventListener('click', () => {
-    console.log('Iran')
+    setTimer()
 })
     
 function applyDarkTheme() {
-    
+    // Code for dark theme here ************************************
+}
+function setTimer() {
+    // Code for timer here ************************************
 }
     
 function hideShowOptions() {
@@ -108,5 +112,5 @@ function infoFromAPI(myWord) {
             })
         })
     })
-    console.log(_APIsynonyms)
+    // console.log(_APIsynonyms)
 }
