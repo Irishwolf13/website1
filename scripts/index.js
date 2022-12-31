@@ -117,4 +117,5 @@ function infoFromAPI(myWord) {
     })
     // console.log(_APIsynonyms)
     // Super Fancy Comment *****
+    // Another Super Fancy Comment **********************************
 }
