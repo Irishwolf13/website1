@@ -93,5 +93,4 @@ function infoFromAPI(myWord) {
         })
     })
     console.log(_APIsynonyms)
-    // a fancy comment again
 }
