@@ -131,7 +131,6 @@ synonymButton.addEventListener('click', (e) => {
         defintionButton.id = ''
         _currentGame = 'synonym'
     }
-    console.log(_currentGame)
 })
 defintionButton.addEventListener('click', (e) => {
     if (e.target.id == '') {
@@ -139,7 +138,6 @@ defintionButton.addEventListener('click', (e) => {
         synonymButton.id = ''
         _currentGame = 'definition'
     }
-    console.log(_currentGame)
 })
 function switchDificulty(button) {
     button.target.id ='myDificulty'
@@ -158,7 +156,6 @@ function switchDificulty(button) {
             optionDifMedium.id = ''
         break
     }
-    console.log(_currentDifficulty)
 }
 optionDifEasy.addEventListener('click', switchDificulty)
 optionDifMedium.addEventListener('click', switchDificulty)

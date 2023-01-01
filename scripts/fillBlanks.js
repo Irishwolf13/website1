@@ -101,9 +101,6 @@ function foundWord(e) {
             numberOfPoints += 100
         }else if(wordHints[myLowerCase] < myLowerCase.length) {
             numberOfPoints += 50
-        }else {
-            console.log(wordHints[myLowerCase])
-            console.log('my length', myLowerCase.length)
         }
         wordHints[myLowerCase] = (myLowerCase.length +1);
         setPoints(numberOfPoints)
