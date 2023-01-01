@@ -9,9 +9,9 @@ let numberOfPoints = 0;
 let _APIword = {};
 let _APIsynonyms = {};
 let _APIantonyms = {};
-infoFromAPI(currentWord)
 let isVisible = false;
 let darkTheme = false;
+infoFromAPI(currentWord)
 
 // Gather up the Troops(HTML elements)
 const myWordDisplay = document.querySelector('.gameTypeBar')
@@ -26,10 +26,10 @@ const optionTimer = document.querySelector('.optionTimer')
 const optionDark = document.querySelector('.optionDark')
 const optionMenuButton = document.querySelector('.optionMenuButton')
 const startButton = document.querySelector('.startButton')
-startButton.addEventListener('click', () => {
-    startButton.remove(); // This is only a placeholder so it deletes itself.
-})
+const optionStartButton = document.querySelector('.optionStartButton')
+
 optionMenuButton.addEventListener('click', () => {
+    optionMenuButton.innerHTML == 'Options' ? optionMenuButton.innerHTML = 'Close Options' : optionMenuButton.innerHTML = 'Options'
     hideShowOptions()
 })
 const darkThemeSwtich = document.getElementById('darkThemeSwtich')
@@ -40,7 +40,7 @@ const timerSwitch = document.getElementById('timerSwitch')
 timerSwitch.addEventListener('click', () => {
     setTimer()
 })
-    
+
 function applyDarkTheme() {
     // Code for dark theme here ************************************
 }
@@ -116,7 +116,4 @@ function infoFromAPI(myWord) {
         })
     })
     // console.log(_APIsynonyms)
-    // Super Fancy Comment *****
-    // Another Super Fancy Comment **********************************
-    // Yet Another Super Fancy Comment **********************************
 }

@@ -14,17 +14,19 @@
 }
 .optionMenuButton {
   font-size: 1.2em;
+  box-shadow: 2px 3px #16384e;
 }
 .optionContainer {
+  min-width: 250px;
   position: relative;
   display: flex;
   flex-direction: column;
   visibility: hidden;
   height: 0px;
-  border-style: dashed;
   border-width: 1px;
   padding: 0 20px 10px 20px;
-  background-color: #b09ddc;
+  background-color: #00AFB9;
+  box-shadow: 3px 5px #16384e;
 }
 .optionContainer div div {
   font-size: 1.5em;
@@ -37,7 +39,17 @@
 .optionStartButton img {
   width: 90px
 }
-
+#myGameType, #myDificulty {
+  background-color: #000000;
+  color: white;
+}
+.easy, .medium, .hard, .selectSynonym, .selecDefinition {
+  cursor: pointer;
+  box-shadow: 1px 1px #16384e;
+}
+.optionStartButton img {
+  cursor: pointer;
+}
 .middleArea {
   width: 50%;
   display: flex;
@@ -53,7 +65,8 @@
   align-items: center;
   display: flex;
 }
-.startButton {
+.startButton img{
+  max-width: 200px;
   cursor: pointer;
 }
 
