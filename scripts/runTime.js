@@ -3,10 +3,12 @@ startButton.addEventListener('click', () => {
     if (optionsVisible) {
         hideShowOptions()
     }
+    audioButton.style.visibility = 'visible'
 })
 optionStartButton.addEventListener('click', () => {
     loadCurrentGame()
     hideShowOptions()
+    audioButton.style.visibility = 'visible'
 })
 
 function loadCurrentGame() {

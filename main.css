@@ -183,7 +183,11 @@ body {
   white-space: nowrap;
   position: relative;
 }
-
+.audioButton {
+  position: relative;
+  visibility: hidden;
+  margin-bottom: 20px;
+}
 .hint {
   max-width: 700px;
   min-height: 67px;

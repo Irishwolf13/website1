@@ -1,5 +1,5 @@
 // My test array of words because I can't seem to get an array of words from the API.
-const myArrayOfWords = ['hot', 'Cold', 'Fair', 'Far', 'Quiet', 'Loud', 'Missing', 'Help'];
+const myArrayOfWords = ['hot', 'Cold', 'fail', 'Epic', 'Quiet', 'Wonderful', 'Missing', 'Help'];
 
 const remoteUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"    // My remote Url
 // Choose a random first word from the array of words and make it the current word.
@@ -14,6 +14,9 @@ let _currentDifficulty = 'easy';
 let _isTimer = false;
 let _timerCounter = 60;
 let darkTheme = false;
+let _nextAudio = ''
+let _currentAudio = ''
+
 
 let optionsVisible = false;
 let gameStarted = false;
@@ -40,6 +43,12 @@ const optionDifMedium = document.querySelector('.medium')
 const optionDifHard = document.querySelector('.hard')
 const darkThemeSwtich = document.getElementById('darkThemeSwtich')
 const timerSwitch = document.getElementById('timerSwitch')
+//This bit is for playing the mp3 file
+const audioButton = document.querySelector('.audioButton')
+audioButton.innerHTML = 'Hear Word'
+audioButton.addEventListener('click', () => {
+    new Audio(_currentAudio).play()
+})
 
 optionMenuButton.addEventListener('click', hideShowOptions)
 function hideShowOptions() {
@@ -81,6 +90,7 @@ function removeElementsFromDOM(parent) {
 }
 
 function setUpNewWord() {
+    _currentAudio = _nextAudio
     _APIsynonyms = {};
     _APIantonyms = {};
     getNewRandomWord()
@@ -98,6 +108,13 @@ function infoFromAPI(myWord) {
     })
     .then((apiReturn) => apiReturn.json())
     .then((response) => {
+        // This gets the audio for the current word
+        response[0].phonetics.forEach((phonetic) => {
+            if (phonetic.audio != '') {
+                _nextAudio = phonetic.audio
+            }
+        })
+        // This gets the synonyms for the current word
         response.forEach(element => {
             element.meanings.forEach(e => {
                 let myType = e.partOfSpeech
@@ -108,6 +125,7 @@ function infoFromAPI(myWord) {
                 })
             })
         });
+        // this get the antonyms for the current word
         response.forEach(element => {
             element.meanings.forEach(e => {
                 let myType = e.partOfSpeech

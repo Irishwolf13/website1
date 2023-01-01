@@ -51,8 +51,7 @@ function createSynonymGame(myWord) {
         if (_currentDifficulty === 'hard') {
             button.style.visibility = 'hidden'
         }
-        listContainer.appendChild(button)
-        
+        listContainer.appendChild(button)  
     })
     // Sets up next word
     setUpNewWord()
