@@ -9,8 +9,13 @@ let numberOfPoints = 0;
 let _APIword = {};
 let _APIsynonyms = {};
 let _APIantonyms = {};
-let isVisible = false;
+let _currentGame = 'synonym';
+let _currentDifficulty = 'easy';
+let _isTimer = false;
+let _timerCounter = 60;
 let darkTheme = false;
+
+let isVisible = false;
 infoFromAPI(currentWord)
 
 // Gather up the Troops(HTML elements)
@@ -22,11 +27,14 @@ const listContainer = document.querySelector('.synonym-List')
 const optionContainer = document.querySelector('.optionContainer')
 const optionGameType = document.querySelector('.optionGameType')
 const optionDifficulty = document.querySelector('.optionDifficulty')
-const optionTimer = document.querySelector('.optionTimer')
-const optionDark = document.querySelector('.optionDark')
+const optionTimer = document.getElementById('timerSwitch')
+const optionDark = document.getElementById('darkThemeSwtich')
 const optionMenuButton = document.querySelector('.optionMenuButton')
 const startButton = document.querySelector('.startButton')
 const optionStartButton = document.querySelector('.optionStartButton')
+const optionDifEasy = document.querySelector('.easy')
+const optionDifMedium = document.querySelector('.medium')
+const optionDifHard = document.querySelector('.hard')
 
 optionMenuButton.addEventListener('click', () => {
     optionMenuButton.innerHTML == 'Options' ? optionMenuButton.innerHTML = 'Close Options' : optionMenuButton.innerHTML = 'Options'
@@ -115,5 +123,54 @@ function infoFromAPI(myWord) {
             })
         })
     })
-    // console.log(_APIsynonyms)
 }
+
+// BEGIN section is for game setup using Options *************************************
+const synonymButton = document.querySelector('.selectSynonym')
+const defintionButton = document.querySelector('.selecDefinition')
+
+synonymButton.addEventListener('click', (e) => {
+    if (e.target.id == '') {
+        e.target.id = 'myGameType'
+        defintionButton.id = ''
+        _currentGame = 'synonym'
+    }
+})
+defintionButton.addEventListener('click', (e) => {
+    if (e.target.id == '') {
+        e.target.id = 'myGameType'
+        synonymButton.id = ''
+        _currentGame = 'definition'
+    }
+})
+optionDifEasy.addEventListener('click', (e) => {
+    if (e.target.id == '') {
+        e.target.id ='myDificulty'
+        optionDifMedium.id = ''
+        optionDifHard.id = ''
+        _currentDifficulty = 'easy'
+    }
+})
+optionDifMedium.addEventListener('click', (e) => {
+    if (e.target.id == '') {
+        e.target.id ='myDificulty'
+        optionDifEasy.id = ''
+        optionDifHard.id = ''
+        _currentDifficulty = 'medium'
+    }
+})
+optionDifHard.addEventListener('click', (e) => {
+    if (e.target.id == '') {
+        e.target.id ='myDificulty'
+        optionDifEasy.id = ''
+        optionDifMedium.id = ''
+        _currentDifficulty = 'hard'
+    }
+})
+optionTimer.addEventListener('click', (e) => {
+    _isTimer ? _isTimer = false : _isTimer = true
+})
+optionDark.addEventListener('click', (e) => {
+    darkTheme ? darkTheme = false : darkTheme = true
+})
+// END section is for game setup using Options *************************************

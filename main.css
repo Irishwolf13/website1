@@ -40,9 +40,10 @@
   width: 90px
 }
 #myGameType, #myDificulty {
-  background-color: #000000;
+  background-color: black;
   color: white;
 }
+
 .easy, .medium, .hard, .selectSynonym, .selecDefinition {
   cursor: pointer;
   box-shadow: 1px 1px #16384e;

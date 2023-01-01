@@ -5,5 +5,4 @@ startButton.addEventListener('click', () => {
 })
 optionStartButton.addEventListener('click', () => {
     hideShowOptions()
-    console.log('optionStartButton clicked')
 })
