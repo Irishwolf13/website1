@@ -143,7 +143,7 @@ defintionButton.addEventListener('click', (e) => {
 })
 function switchDificulty(button) {
     button.target.id ='myDificulty'
-    _currentDifficulty = button.target.class
+    _currentDifficulty = button.target.classList[0]
     switch (button.target.classList[0]) {
         case 'easy':
             optionDifMedium.id = ''
@@ -158,6 +158,7 @@ function switchDificulty(button) {
             optionDifMedium.id = ''
         break
     }
+    console.log(_currentDifficulty)
 }
 optionDifEasy.addEventListener('click', switchDificulty)
 optionDifMedium.addEventListener('click', switchDificulty)

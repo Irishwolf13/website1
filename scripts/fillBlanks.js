@@ -10,8 +10,6 @@ function createSynonymGame(myWord) {
     setPoints(numberOfPoints)
     adjustMainWord(currentWord, 'Fill in the Blanks')
     setDOMforFillInBlanks()
-    let myhint = document.querySelector('.hint')
-    myhint.innerHTML = "Hover over box for definitions, Click box for hints"
     listContainer.classList.remove('synonym-List-Multiple')
     listContainer.classList.add('synonym-List')
 
@@ -24,29 +22,37 @@ function createSynonymGame(myWord) {
         button.addEventListener('click', (e) => {
             hintButtonClicked(e, mySynonym)
         })
-        button.addEventListener('mouseenter', (e) => {
-            // This fetch is to get the definition of the synonym and display it in the 'hint' section
-            // *************** Needs a check for a failed request ******************************************
-            fetch(`${remoteUrl}${e.target.id}`, {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-            })
-            .then(response => response.json())
-            .then(mySynonymWord => {
-                mySynonymWord.forEach(element => {
-                    // Definition of the synonym and display it in the 'hint' section
-                    const hintText = document.querySelector('.hint')
-                    hintText.innerHTML = element.meanings[0].definitions[0].definition
+        if (_currentDifficulty === 'easy') {
+            button.addEventListener('mouseenter', (e) => {
+                // This fetch is to get the definition of the synonym and display it in the 'hint' section
+                // *************** Needs a check for a failed request ******************************************
+                fetch(`${remoteUrl}${e.target.id}`, {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(mySynonymWord => {
+                    mySynonymWord.forEach(element => {
+                        // Definition of the synonym and display it in the 'hint' section
+                        const hintText = document.querySelector('.hint')
+                        hintText.innerHTML = element.meanings[0].definitions[0].definition
+                    })
                 })
             })
-        })
+            let myhint = document.querySelector('.hint')
+            myhint.innerHTML = "Hover over box for definitions, Click box for hints"
+            button.addEventListener('mouseleave', () => {
+                myhint.innerHTML = ""
+            })
+        }
+        if (_currentDifficulty === 'hard') {
+            button.style.visibility = 'hidden'
+        }
         listContainer.appendChild(button)
-        button.addEventListener('mouseleave', () => {
-            myhint.innerHTML = ""
-        })
+        
     })
     // Sets up next word
     setUpNewWord()
@@ -79,7 +85,6 @@ function setDOMforFillInBlanks() {
     })
     let p = document.createElement("p")
     p.classList.add("hint")
-    p.innerHTML = "Click on a Box to get a hint!"
     gameInput.appendChild(form)
     gameInput.appendChild(p)
 }
@@ -90,6 +95,7 @@ function foundWord(e) {
         let myDiv = document.querySelector(`#${myLowerCase}`)
         myDiv.classList.remove('notFound')
         myDiv.classList.add('found')
+        myDiv.style.visibility = 'visible'
         myDiv.innerHTML = (myLowerCase).toUpperCase();
         if (wordHints[myLowerCase] == 1) {
             numberOfPoints += 100
