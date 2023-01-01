@@ -4,18 +4,13 @@ let wordHints = {};
 let hintLetters = ''
 
 function createBlanksButton() {
-    const getNewWord = document.createElement('button')
-    getNewWord.innerHTML = 'Fill in the Blanks'
-    getNewWord.addEventListener('click', () => {
-        removeElementsFromDOM(gameInput) // Clears DOM
-        setPoints(numberOfPoints)
-        adjustMainWord(currentWord, 'Fill in the Blanks')
-        setDOMforFillInBlanks()
-        getWordFillInBlanks(currentWord)
-        let myhint = document.querySelector('.hint')
-        myhint.innerHTML = "Click on a Box to get a hint!"
-    })
-    optionGameType.appendChild(getNewWord)
+    removeElementsFromDOM(gameInput) // Clears DOM
+    setPoints(numberOfPoints)
+    adjustMainWord(currentWord, 'Fill in the Blanks')
+    setDOMforFillInBlanks()
+    getWordFillInBlanks(currentWord)
+    let myhint = document.querySelector('.hint')
+    myhint.innerHTML = "Click on a Box to get a hint!"
 }
 
 // This is for fill in the blank gamestyle
@@ -122,5 +117,3 @@ function hintButtonClicked(e, mySynonym) {
     // Sets Text in the Box to hangman version of the word
     e.target.innerHTML = hintLetters
 }
-
-createBlanksButton()

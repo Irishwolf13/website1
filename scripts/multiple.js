@@ -1,14 +1,14 @@
-function createMultipleButton() {
-    const getNewWord = document.createElement('button')
-    getNewWord.innerHTML = 'Definition Game'
-    getNewWord.addEventListener('click', () => {
-        removeElementsFromDOM(gameInput)
-        removeElementsFromDOM(listContainer)
-        setPoints(numberOfPoints)
-        getWordMultipleChoice(currentWord)
-    })
-    optionGameType.appendChild(getNewWord)
-}
+// function createMultipleButton() {
+//     const getNewWord = document.createElement('button')
+//     getNewWord.innerHTML = 'Definition Game'
+//     getNewWord.addEventListener('click', () => {
+//         removeElementsFromDOM(gameInput)
+//         removeElementsFromDOM(listContainer)
+//         setPoints(numberOfPoints)
+//         getWordMultipleChoice(currentWord)
+//     })
+//     optionGameType.appendChild(getNewWord)
+// }
 
 function getWordMultipleChoice(myWord) {
     listContainer.classList.remove('synonym-List')
@@ -28,5 +28,3 @@ function getWordMultipleChoice(myWord) {
     // Sets up next word
     setUpNewWord()
 }
-
-createMultipleButton()
