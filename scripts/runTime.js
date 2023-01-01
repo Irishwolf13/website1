@@ -1,13 +1,16 @@
 startButton.addEventListener('click', () => {
     startButton.remove();
+    gameStarted = true;
     loadCurrentGame()
-    if (isVisible) {
+    if (optionsVisible) {
         hideShowOptions()
     }
 })
 optionStartButton.addEventListener('click', () => {
     loadCurrentGame()
     hideShowOptions()
+    startButton.remove();
+    gameStarted = true;
 })
 
 function loadCurrentGame() {
@@ -17,13 +20,6 @@ function loadCurrentGame() {
         getWordMultipleChoice(currentWord)
     }
 }
-
-// let _currentGame = 'synonym';
-// let _currentDifficulty = 'easy';
-// let _isTimer = false;
-// let _timerCounter = 60;
-
-
 
 // Dark theme here ************************************
 darkThemeSwtich.addEventListener('click', applyDarkTheme)

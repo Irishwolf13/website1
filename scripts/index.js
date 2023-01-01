@@ -15,7 +15,8 @@ let _isTimer = false;
 let _timerCounter = 60;
 let darkTheme = false;
 
-let isVisible = false;
+let optionsVisible = false;
+let gameStarted = false;
 infoFromAPI(currentWord)
 
 // Gather up the Troops(HTML elements)
@@ -41,17 +42,23 @@ const darkThemeSwtich = document.getElementById('darkThemeSwtich')
 const timerSwitch = document.getElementById('timerSwitch')
 
 optionMenuButton.addEventListener('click', hideShowOptions)
-
 function hideShowOptions() {
     optionMenuButton.innerHTML == 'Options' ? optionMenuButton.innerHTML = 'Close Options' : optionMenuButton.innerHTML = 'Options'
-    if (isVisible) {
+    if (optionsVisible) {
         optionContainer.style.height = '0px'
         optionContainer.style.visibility = 'hidden'
-        isVisible = false
+        optionsVisible = false
     } else {
         optionContainer.style.height = '200px'
         optionContainer.style.visibility = 'visible'
-        isVisible = true
+        optionsVisible = true
+    }
+    if (!gameStarted) {
+        if (startButton.style.visibility == '') {
+            startButton.style.visibility = 'hidden'
+        }else {
+            startButton.style.visibility = ''
+        }
     }
 }
 function getNewRandomWord() {

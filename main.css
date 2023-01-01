@@ -12,6 +12,10 @@
   border-top-style: none;
   padding-bottom: 100px;
 }
+.startButton img{
+  max-width: 200px;
+  cursor: pointer;
+}
 .circle {
   visibility: hidden;
 }
@@ -63,11 +67,6 @@
   justify-content: center;
   align-items: center;
   display: flex;
-}
-.startButton {
-  visibility: visible;
-  max-width: 200px;
-  cursor: pointer;
 }
 
 .notFound {
