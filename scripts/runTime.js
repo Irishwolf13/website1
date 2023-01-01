@@ -1,6 +1,4 @@
 startButton.addEventListener('click', () => {
-    startButton.remove();
-    gameStarted = true;
     loadCurrentGame()
     if (optionsVisible) {
         hideShowOptions()
@@ -9,16 +7,22 @@ startButton.addEventListener('click', () => {
 optionStartButton.addEventListener('click', () => {
     loadCurrentGame()
     hideShowOptions()
-    startButton.remove();
-    gameStarted = true;
 })
 
 function loadCurrentGame() {
+    gameStarted = true;
+    numberOfPoints = 0;
+    setPoints(numberOfPoints)
+    startButton.remove();
     if (_currentGame == 'synonym') {
         createSynonymGame(currentWord)
     }else if (_currentGame == 'definition') {
         getWordMultipleChoice(currentWord)
     }
+}
+
+function nextWord() {
+    // NEED CODE HERE FOR ADDING A NEXT WORD BUTTON AT THE BOTTOM *******************************
 }
 
 // Dark theme here ************************************

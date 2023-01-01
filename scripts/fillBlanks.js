@@ -3,7 +3,7 @@ let gameType = ``
 let wordHints = {};
 let hintLetters = ''
 
-// This is for fill in the blank gamestyle
+// This is for Synonym gamestyle
 function createSynonymGame(myWord) {
     removeElementsFromDOM(listContainer)    // Clears DOM for the following appends
     removeElementsFromDOM(gameInput)        // Clears DOM for the following appends

@@ -1,3 +1,6 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 .flex-container {
   min-height: 55vh;
   width: 100%;
@@ -25,7 +28,7 @@
 }
 .optionContainer {
   min-width: 250px;
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   visibility: hidden;
@@ -34,6 +37,8 @@
   padding: 0 20px 10px 20px;
   background-color: #00AFB9;
   box-shadow: 3px 5px #16384e;
+  z-index: 100;
+  top: 90px;
 }
 .optionContainer div div {
   font-size: 1.5em;
@@ -161,7 +166,8 @@
 
 .list-Item {
   list-style: none;
-  font-size: 0.55em;
+  font-size: 0.7em;
+  font-family: Arial, Helvetica, sans-serif;
   border-style: solid;
   border-width: 1px;
   border-color: black;
@@ -179,9 +185,11 @@
 }
 
 .hint {
-  max-width: 500px;
-  min-height: 50px;
+  max-width: 700px;
+  min-height: 67px;
   text-align: center;
+  font-size: 1.2em;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .newWordButton {
