@@ -12,6 +12,9 @@
   border-top-style: none;
   padding-bottom: 100px;
 }
+.circle {
+  visibility: hidden;
+}
 .optionMenuButton {
   font-size: 1.2em;
   box-shadow: 2px 3px #16384e;
@@ -35,21 +38,16 @@
   position: absolute;
   right: 0;
   bottom: 0;
-}
-.optionStartButton img {
-  width: 90px
+  width: 90px;
+  cursor: pointer;
 }
 #myGameType, #myDificulty {
   background-color: black;
   color: white;
 }
-
 .easy, .medium, .hard, .selectSynonym, .selecDefinition {
   cursor: pointer;
   box-shadow: 1px 1px #16384e;
-}
-.optionStartButton img {
-  cursor: pointer;
 }
 .middleArea {
   width: 50%;
@@ -66,7 +64,8 @@
   align-items: center;
   display: flex;
 }
-.startButton img{
+.startButton {
+  visibility: visible;
   max-width: 200px;
   cursor: pointer;
 }

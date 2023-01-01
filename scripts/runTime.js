@@ -1,8 +1,38 @@
 startButton.addEventListener('click', () => {
-    // Going to need to check Options then create an If/Else statement
-    createBlanksButton()
-    startButton.remove(); // This is only a placeholder so it deletes itself.
+    startButton.remove();
+    loadCurrentGame()
+    if (isVisible) {
+        hideShowOptions()
+    }
 })
 optionStartButton.addEventListener('click', () => {
+    loadCurrentGame()
     hideShowOptions()
 })
+
+function loadCurrentGame() {
+    if (_currentGame == 'synonym') {
+        createSynonymGame(currentWord)
+    }else if (_currentGame == 'definition') {
+        getWordMultipleChoice(currentWord)
+    }
+}
+
+// let _currentGame = 'synonym';
+// let _currentDifficulty = 'easy';
+// let _isTimer = false;
+// let _timerCounter = 60;
+
+
+
+// Dark theme here ************************************
+darkThemeSwtich.addEventListener('click', applyDarkTheme)
+function applyDarkTheme() {
+    // Code for dark theme here ************************************
+}
+
+// Timer here ************************************
+timerSwitch.addEventListener('click', setTimer)
+function setTimer() {
+    // Code for timer here ************************************
+}

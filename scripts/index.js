@@ -21,7 +21,9 @@ infoFromAPI(currentWord)
 // Gather up the Troops(HTML elements)
 const myWordDisplay = document.querySelector('.gameTypeBar')
 const gameDifficulty = document.querySelector('.difficulty')
+const gameCircle = document.querySelector('.circle')
 const gamePointScore = document.querySelector('.score')
+const gamePointTitle = document.querySelector('.pointsTitle')
 const gameInput = document.querySelector('.inputArea')
 const listContainer = document.querySelector('.synonym-List')
 const optionContainer = document.querySelector('.optionContainer')
@@ -35,28 +37,13 @@ const optionStartButton = document.querySelector('.optionStartButton')
 const optionDifEasy = document.querySelector('.easy')
 const optionDifMedium = document.querySelector('.medium')
 const optionDifHard = document.querySelector('.hard')
-
-optionMenuButton.addEventListener('click', () => {
-    optionMenuButton.innerHTML == 'Options' ? optionMenuButton.innerHTML = 'Close Options' : optionMenuButton.innerHTML = 'Options'
-    hideShowOptions()
-})
 const darkThemeSwtich = document.getElementById('darkThemeSwtich')
-darkThemeSwtich.addEventListener('click', () => {
-    applyDarkTheme()
-})
 const timerSwitch = document.getElementById('timerSwitch')
-timerSwitch.addEventListener('click', () => {
-    setTimer()
-})
 
-function applyDarkTheme() {
-    // Code for dark theme here ************************************
-}
-function setTimer() {
-    // Code for timer here ************************************
-}
-    
+optionMenuButton.addEventListener('click', hideShowOptions)
+
 function hideShowOptions() {
+    optionMenuButton.innerHTML == 'Options' ? optionMenuButton.innerHTML = 'Close Options' : optionMenuButton.innerHTML = 'Options'
     if (isVisible) {
         optionContainer.style.height = '0px'
         optionContainer.style.visibility = 'hidden'
@@ -76,6 +63,8 @@ function adjustMainWord(gameWord, gameMode) {
     gameDifficulty.innerHTML = gameMode
 }
 function setPoints(myPoints) {
+    gameCircle.style.visibility = 'visible'
+    gamePointTitle.innerHTML = 'Points:'
     gamePointScore.innerHTML = myPoints;
 }
 function removeElementsFromDOM(parent) {
@@ -135,6 +124,7 @@ synonymButton.addEventListener('click', (e) => {
         defintionButton.id = ''
         _currentGame = 'synonym'
     }
+    console.log(_currentGame)
 })
 defintionButton.addEventListener('click', (e) => {
     if (e.target.id == '') {
@@ -142,31 +132,30 @@ defintionButton.addEventListener('click', (e) => {
         synonymButton.id = ''
         _currentGame = 'definition'
     }
+    console.log(_currentGame)
 })
-optionDifEasy.addEventListener('click', (e) => {
-    if (e.target.id == '') {
-        e.target.id ='myDificulty'
-        optionDifMedium.id = ''
-        optionDifHard.id = ''
-        _currentDifficulty = 'easy'
+function switchDificulty(button) {
+    button.target.id ='myDificulty'
+    _currentDifficulty = button.target.class
+    switch (button.target.classList[0]) {
+        case 'easy':
+            optionDifMedium.id = ''
+            optionDifHard.id = ''
+        break
+        case'medium':
+            optionDifEasy.id = ''
+            optionDifHard.id = ''
+        break
+        case 'hard':
+            optionDifEasy.id = ''
+            optionDifMedium.id = ''
+        break
     }
-})
-optionDifMedium.addEventListener('click', (e) => {
-    if (e.target.id == '') {
-        e.target.id ='myDificulty'
-        optionDifEasy.id = ''
-        optionDifHard.id = ''
-        _currentDifficulty = 'medium'
-    }
-})
-optionDifHard.addEventListener('click', (e) => {
-    if (e.target.id == '') {
-        e.target.id ='myDificulty'
-        optionDifEasy.id = ''
-        optionDifMedium.id = ''
-        _currentDifficulty = 'hard'
-    }
-})
+}
+optionDifEasy.addEventListener('click', switchDificulty)
+optionDifMedium.addEventListener('click', switchDificulty)
+optionDifHard.addEventListener('click', switchDificulty)
+
 optionTimer.addEventListener('click', (e) => {
     _isTimer ? _isTimer = false : _isTimer = true
 })

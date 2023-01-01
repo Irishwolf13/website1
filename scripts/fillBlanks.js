@@ -3,19 +3,18 @@ let gameType = ``
 let wordHints = {};
 let hintLetters = ''
 
-function createBlanksButton() {
-    removeElementsFromDOM(gameInput) // Clears DOM
+// This is for fill in the blank gamestyle
+function createSynonymGame(myWord) {
+    removeElementsFromDOM(listContainer)    // Clears DOM for the following appends
+    removeElementsFromDOM(gameInput)        // Clears DOM for the following appends
     setPoints(numberOfPoints)
     adjustMainWord(currentWord, 'Fill in the Blanks')
     setDOMforFillInBlanks()
-    getWordFillInBlanks(currentWord)
     let myhint = document.querySelector('.hint')
-    myhint.innerHTML = "Click on a Box to get a hint!"
-}
+    myhint.innerHTML = "Hover over box for definitions, Click box for hints"
+    listContainer.classList.remove('synonym-List-Multiple')
+    listContainer.classList.add('synonym-List')
 
-// This is for fill in the blank gamestyle
-function getWordFillInBlanks(myWord) {
-    removeElementsFromDOM(listContainer) // Clears DOM for the following appends
     Object.keys(_APIsynonyms).forEach(mySynonym => {
         let button = document.createElement('button')
         button.id = `${mySynonym}`;
@@ -25,7 +24,7 @@ function getWordFillInBlanks(myWord) {
         button.addEventListener('click', (e) => {
             hintButtonClicked(e, mySynonym)
         })
-        button.addEventListener('mouseover', (e) => {
+        button.addEventListener('mouseenter', (e) => {
             // This fetch is to get the definition of the synonym and display it in the 'hint' section
             // *************** Needs a check for a failed request ******************************************
             fetch(`${remoteUrl}${e.target.id}`, {
@@ -44,8 +43,10 @@ function getWordFillInBlanks(myWord) {
                 })
             })
         })
-        // Appened the whole deal to the DOM
         listContainer.appendChild(button)
+        button.addEventListener('mouseleave', () => {
+            myhint.innerHTML = ""
+        })
     })
     // Sets up next word
     setUpNewWord()
