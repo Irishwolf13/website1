@@ -34,6 +34,7 @@ const gameCircle = document.querySelector('.circle')
 const gamePointScore = document.querySelector('.score')
 const gamePointTitle = document.querySelector('.pointsTitle')
 const gameInput = document.querySelector('.inputArea')
+const middleArea = document.querySelector('.middleArea')
 const listContainer = document.querySelector('.synonym-List')
 const optionContainer = document.querySelector('.optionContainer')
 const optionGameType = document.querySelector('.optionGameType')
@@ -93,7 +94,17 @@ function removeElementsFromDOM(parent) {
         parent.removeChild(parent.firstChild)
     }
 }
-
+function setNextWordButton() {
+    let div = document.createElement('div')
+    let img = document.createElement('img')
+    img.classList.add('nextButton')
+    img.src = 'images/cinnamonNewWord.png'
+    div.appendChild(img)
+    div.addEventListener('click', () => {
+        console.log('iran')
+    })
+    middleArea.append(div)
+}
 function setUpNewWord() {
     _currentAudio = _nextAudio
     _nextAPIword = _APIword

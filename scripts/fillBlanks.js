@@ -37,6 +37,7 @@ function createSynonymGame(myWord) {
         }
         listContainer.appendChild(button)  
     })
+    setNextWordButton()
     // Sets up next word
     setUpNewWord()
 };
@@ -87,6 +88,11 @@ function foundWord(e) {
         }
         wordHints[myLowerCase] = (myLowerCase.length +1);
         setPoints(numberOfPoints)
+    }else {
+        e.target.name.style.backgroundColor = "red"
+        setTimeout(function(){
+            e.target.name.style.backgroundColor = "white";
+          }, 500);
     }
     
 }
