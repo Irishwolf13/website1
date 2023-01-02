@@ -23,29 +23,13 @@ function createSynonymGame(myWord) {
             hintButtonClicked(e, mySynonym)
         })
         if (_currentDifficulty === 'easy') {
+            const hintText = document.querySelector('.hint')
+            hintText.innerHTML = "Hover over box for definitions, Click box for hints"
             button.addEventListener('mouseenter', (e) => {
-                // This fetch is to get the definition of the synonym and display it in the 'hint' section
-                // *************** Needs a check for a failed request ******************************************
-                fetch(`${remoteUrl}${e.target.id}`, {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                })
-                .then(response => response.json())
-                .then(mySynonymWord => {
-                    mySynonymWord.forEach(element => {
-                        // Definition of the synonym and display it in the 'hint' section
-                        const hintText = document.querySelector('.hint')
-                        hintText.innerHTML = element.meanings[0].definitions[0].definition
-                    })
-                })
+                hintText.innerHTML = _currentAPIsynonyms[`${mySynonym}`]
             })
-            let myhint = document.querySelector('.hint')
-            myhint.innerHTML = "Hover over box for definitions, Click box for hints"
             button.addEventListener('mouseleave', () => {
-                myhint.innerHTML = ""
+                hintText.innerHTML = ""
             })
         }
         if (_currentDifficulty === 'hard') {

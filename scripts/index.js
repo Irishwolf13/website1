@@ -9,6 +9,11 @@ let numberOfPoints = 0;
 let _APIword = {};
 let _APIsynonyms = {};
 let _APIantonyms = {};
+let _APIdefinitions = {};
+let _nextAPIword = {};
+let _currentAPIsynonyms = {};
+let _currentAPIantonyms = {};
+let _currentAPIdefinitions = {};
 let _currentGame = 'synonym';
 let _currentDifficulty = 'easy';
 let _isTimer = false;
@@ -91,6 +96,10 @@ function removeElementsFromDOM(parent) {
 
 function setUpNewWord() {
     _currentAudio = _nextAudio
+    _nextAPIword = _APIword
+    _currentAPIsynonyms =_APIsynonyms
+    _currentAPIantonyms = _APIantonyms
+    _nextAPIdefinitions = _APIdefinitions
     _APIsynonyms = {};
     _APIantonyms = {};
     getNewRandomWord()
@@ -117,10 +126,24 @@ function infoFromAPI(myWord) {
         // This gets the synonyms for the current word
         response.forEach(element => {
             element.meanings.forEach(e => {
-                let myType = e.partOfSpeech
                 e.synonyms.forEach(s => {
                     if (!s.includes(" ")){
-                        _APIsynonyms[s] = myType;
+                        fetch(`${remoteUrl}${s}`, {
+                            method: "GET",
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                        })
+                        .then(response => response.json())
+                        .then(mySynonymWord => {
+                            try {
+                                let myDef = mySynonymWord[0].meanings[0].definitions[0].definition
+                                _APIsynonyms[s] = myDef;
+                            } catch (e) {
+                                _APIsynonyms[s] = "No Definition was found for this word.";
+                            }
+                        })
                     }
                 })
             })
