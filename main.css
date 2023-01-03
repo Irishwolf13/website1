@@ -6,7 +6,7 @@ body {
   width: 100%;
   min-width: 400px;
   position: relative;
-  background-color: #00ffff;
+  background-color: #fef8d4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +17,7 @@ body {
 }
 .titlebar {
   display: flex;
-  background-color: #00AFB9;
+  background-color: #e8a243;
   min-height: 1em;
   width: 60%;
   padding-left: 20%;
@@ -80,10 +80,10 @@ body {
   height: 0px;
   border-width: 1px;
   padding: 0 20px 10px 20px;
-  background-color: #00AFB9;
+  background-color: #e8a243;
   box-shadow: 3px 5px #16384e;
   z-index: 100;
-  top: 90px;
+  top: 83px;
 }
 .optionContainer div div {
   font-size: 1.5em;
@@ -140,7 +140,7 @@ body {
   border-top-style: solid;
   border-top-width: 3px;
   z-index: 10;
-  background-color: #260c63;
+  background-color: #452103;
   visibility: hidden;
 }
 .pointsTitle {
