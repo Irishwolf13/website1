@@ -1,14 +1,14 @@
 // Global Variables needed for hint word dashes
 let gameType = ``
-let wordHints = {};
+let wordHints = {}
 let hintLetters = ''
+let numberFound = 0
 
 // This is for Synonym gamestyle
 function createSynonymGame(myWord) {
     removeElementsFromDOM(listContainer)    // Clears DOM for the following appends
     removeElementsFromDOM(gameInput)        // Clears DOM for the following appends
-    setPoints(numberOfPoints)
-    adjustMainWord(currentWord, 'Fill in the Blanks')
+    setPoints(numberOfPoints)  
     setDOMforFillInBlanks()
     listContainer.classList.remove('synonym-List-Multiple')
     listContainer.classList.add('synonym-List')
@@ -19,27 +19,34 @@ function createSynonymGame(myWord) {
         wordHints[mySynonym] = 1;
         button.classList.add('list-Item','notFound')
         button.innerHTML = '????'
+        _APInumberOfSynonyms ++;
         button.addEventListener('click', (e) => {
             hintButtonClicked(e, mySynonym)
         })
+        const hintText = document.querySelector('.hint')
         if (_currentDifficulty === 'easy') {
-            const hintText = document.querySelector('.hint')
-            hintText.innerHTML = "Hover over box for definitions, Click box for hints"
-            button.addEventListener('mouseenter', (e) => {
-                hintText.innerHTML = _currentAPIsynonyms[`${mySynonym}`]
-            })
-            button.addEventListener('mouseleave', () => {
-                hintText.innerHTML = ""
-            })
+            hintText.innerHTML = "Each time you click on a box below you will get see the next letter in that word."
+            // This code was causing too many Fetch requests.
+            // button.addEventListener('mouseenter', (e) => {
+            //     hintText.innerHTML = _currentAPIsynonyms[`${mySynonym}`]
+            // })
+            // button.addEventListener('mouseleave', () => {
+            //     hintText.innerHTML = ""
+            // })
+        }
+        if (_currentDifficulty === 'medium') {
+            hintText.innerHTML = "Each time you click on a box below you will get see the next letter in that word.  Using this hint, will cut the value in half."
         }
         if (_currentDifficulty === 'hard') {
             button.style.visibility = 'hidden'
         }
         listContainer.appendChild(button)  
     })
-    setNextWordButton()
+    adjustMainWord(currentWord, `${numberFound} of ${_APInumberOfSynonyms} synonyms`) 
+    setNavButtons()
     // Sets up next word
     setUpNewWord()
+    console.log('MyCurrent:', _currentNumberOfSynonyms)
 };
 
 function setDOMforFillInBlanks() {
@@ -83,9 +90,16 @@ function foundWord(e) {
         myDiv.innerHTML = (myLowerCase).toUpperCase();
         if (wordHints[myLowerCase] == 1) {
             numberOfPoints += 100
+            numberFound ++
         }else if(wordHints[myLowerCase] < myLowerCase.length) {
-            numberOfPoints += 50
+            numberFound ++
+            if (_currentDifficulty === 'easy') {
+                numberOfPoints += 100
+            }else {
+                numberOfPoints += 50
+            }
         }
+        gameDifficulty.innerHTML = `${numberFound} of ${_currentNumberOfSynonyms} Synonyms`
         wordHints[myLowerCase] = (myLowerCase.length +1);
         setPoints(numberOfPoints)
     }else {
@@ -105,6 +119,8 @@ function hintButtonClicked(e, mySynonym) {
     if (wordHints[e.target.id] == mySynonym.length) {
         e.target.classList.remove('notFound')
         e.target.classList.add('found')
+        numberFound ++
+        gameDifficulty.innerHTML = `${numberFound} of ${_currentNumberOfSynonyms} Synonyms`
     }
     wordHints[e.target.id] ++;
     // Sets Text in the Box to hangman version of the word

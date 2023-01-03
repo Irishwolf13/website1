@@ -1,5 +1,5 @@
 // My test array of words because I can't seem to get an array of words from the API.
-const myArrayOfWords = ['hot', 'Cold', 'fail', 'Epic', 'Quiet', 'Wonderful', 'Missing', 'Help'];
+const myArrayOfWords = ['hot', 'Cold', 'Pride', 'Epic', 'Sleepy', 'Wonderful', 'Missing', 'Help', 'Respect'];
 
 const remoteUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"    // My remote Url
 // Choose a random first word from the array of words and make it the current word.
@@ -10,10 +10,12 @@ let _APIword = {};
 let _APIsynonyms = {};
 let _APIantonyms = {};
 let _APIdefinitions = {};
+let _APInumberOfSynonyms = 0;
 let _nextAPIword = {};
 let _currentAPIsynonyms = {};
 let _currentAPIantonyms = {};
 let _currentAPIdefinitions = {};
+let _currentNumberOfSynonyms = 0;
 let _currentGame = 'synonym';
 let _currentDifficulty = 'easy';
 let _isTimer = false;
@@ -35,6 +37,7 @@ const gamePointScore = document.querySelector('.score')
 const gamePointTitle = document.querySelector('.pointsTitle')
 const gameInput = document.querySelector('.inputArea')
 const middleArea = document.querySelector('.middleArea')
+const middleAreaNextWord = document.querySelector('.middleAreaNextWord')
 const listContainer = document.querySelector('.synonym-List')
 const optionContainer = document.querySelector('.optionContainer')
 const optionGameType = document.querySelector('.optionGameType')
@@ -94,18 +97,9 @@ function removeElementsFromDOM(parent) {
         parent.removeChild(parent.firstChild)
     }
 }
-function setNextWordButton() {
-    let div = document.createElement('div')
-    let img = document.createElement('img')
-    img.classList.add('nextButton')
-    img.src = 'images/cinnamonNewWord.png'
-    div.appendChild(img)
-    div.addEventListener('click', () => {
-        console.log('iran')
-    })
-    middleArea.append(div)
-}
 function setUpNewWord() {
+    _currentNumberOfSynonyms = _APInumberOfSynonyms
+    _APInumberOfSynonyms = 0
     _currentAudio = _nextAudio
     _nextAPIword = _APIword
     _currentAPIsynonyms =_APIsynonyms
@@ -139,22 +133,25 @@ function infoFromAPI(myWord) {
             element.meanings.forEach(e => {
                 e.synonyms.forEach(s => {
                     if (!s.includes(" ")){
-                        fetch(`${remoteUrl}${s}`, {
-                            method: "GET",
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                            },
-                        })
-                        .then(response => response.json())
-                        .then(mySynonymWord => {
-                            try {
-                                let myDef = mySynonymWord[0].meanings[0].definitions[0].definition
-                                _APIsynonyms[s] = myDef;
-                            } catch (e) {
-                                _APIsynonyms[s] = "No Definition was found for this word.";
-                            }
-                        })
+                        _APIsynonyms[s] = true;
+                        // This code caused too many requests So I have to cut it out.
+                        // fetch(`${remoteUrl}${s}`, {
+                        //     method: "GET",
+                        //     headers: {
+                        //         'Content-Type': 'application/json',
+                        //         'Accept': 'application/json'
+                        //     },
+                        // })
+                        // .then(response => response.json())
+                        // .then(mySynonymWord => {
+                        //     try {
+                        //         let myDef = mySynonymWord[0].meanings[0].definitions[0].definition
+                        //         _APIsynonyms[s] = myDef;
+                        //         _APInumberOfSynonyms ++;
+                        //     } catch (e) {
+                        //         delete _APIsynonyms[s]
+                        //     }
+                        // })
                     }
                 })
             })

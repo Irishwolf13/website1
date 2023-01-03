@@ -14,6 +14,7 @@ optionStartButton.addEventListener('click', () => {
 function loadCurrentGame() {
     gameStarted = true;
     numberOfPoints = 0;
+    numberFound = 0;
     setPoints(numberOfPoints)
     startButton.remove();
     if (_currentGame == 'synonym') {
@@ -24,9 +25,26 @@ function loadCurrentGame() {
 }
 
 function nextWord() {
-    // NEED CODE HERE FOR ADDING A NEXT WORD BUTTON AT THE BOTTOM *******************************
+    numberFound = 0;
+    startButton.remove();
+    if (_currentGame == 'synonym') {
+        createSynonymGame(currentWord)
+    }else if (_currentGame == 'definition') {
+        getWordMultipleChoice(currentWord)
+    }
 }
-
+function setNavButtons() {
+    removeElementsFromDOM(middleAreaNextWord)
+    let div = document.createElement('div')
+    let img = document.createElement('img')
+    img.classList.add('nextButton')
+    img.src = 'images/cinnamonNewWord.png'
+    img.addEventListener('click', () => {
+        nextWord()
+    })
+    div.append(img)
+    middleAreaNextWord.append(div)
+}
 // Dark theme here ************************************
 darkThemeSwtich.addEventListener('click', applyDarkTheme)
 function applyDarkTheme() {
