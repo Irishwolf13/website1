@@ -214,6 +214,7 @@ optionDifHard.addEventListener('click', switchDificulty)
 optionTimer.addEventListener('click', (e) => {
     _isTimer ? _isTimer = false : _isTimer = true
 })
+
 optionDark.addEventListener('click', (e) => {
     darkTheme ? darkTheme = false : darkTheme = true
 })
