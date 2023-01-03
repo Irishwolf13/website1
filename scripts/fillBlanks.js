@@ -46,7 +46,6 @@ function createSynonymGame(myWord) {
     setNavButtons()
     // Sets up next word
     setUpNewWord()
-    console.log('MyCurrent:', _currentNumberOfSynonyms)
 };
 
 function setDOMforFillInBlanks() {
