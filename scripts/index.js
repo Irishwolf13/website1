@@ -1,10 +1,8 @@
 // My test array of words because I can't seem to get an array of words from the API.
 
 let dataArray = rawData.split("\n");
-//console.log(dataArray);
 dataArray = dataArray.filter(line => line.includes(" ") !== true);
 const myArrayOfWords = dataArray;
-//console.log(dataArray)
 
 const remoteUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"    // My remote Url
 // Choose a random first word from the array of words and make it the current word.
@@ -28,8 +26,6 @@ let _timerCounter = 60;
 let darkTheme = false;
 let _nextAudio = ''
 let _currentAudio = ''
-
-
 let optionsVisible = false;
 let gameStarted = false;
 infoFromAPI(currentWord)
