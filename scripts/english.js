@@ -1,3 +1,4 @@
+rawData = `
 ab
 aba
 abaht
@@ -233426,3 +233427,4 @@ dirt-bag
 dirt-bags
 -meister
 acne rosacea
+`

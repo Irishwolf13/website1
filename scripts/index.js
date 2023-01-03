@@ -1,5 +1,13 @@
 // My test array of words because I can't seem to get an array of words from the API.
-const myArrayOfWords = ['hot', 'Cold', 'Pride', 'Epic', 'Sleepy', 'Wonderful', 'Missing', 'Help', 'Respect'];
+
+// const fs = require('fs');
+// const rawData = fs.readFileSync("english.txt", 'utf-8');
+//console.log(rawData);
+let dataArray = rawData.split("\n");
+console.log(dataArray);
+dataArray = dataArray.filter(line => line.includes(" ") !== true);
+const myArrayOfWords = dataArray;
+console.log(dataArray)
 
 const remoteUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"    // My remote Url
 // Choose a random first word from the array of words and make it the current word.
