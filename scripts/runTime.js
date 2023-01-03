@@ -3,11 +3,14 @@ startButton.addEventListener('click', () => {
     if (optionsVisible) {
         hideShowOptions()
     }
+    applyTimer()
+    startTimer()
     audioButton.style.visibility = 'visible'
 })
 optionStartButton.addEventListener('click', () => {
     loadCurrentGame()
     hideShowOptions()
+    startTimer()
     audioButton.style.visibility = 'visible'
 })
 
@@ -52,7 +55,44 @@ function applyDarkTheme() {
 }
 
 // Timer here ************************************
-timerSwitch.addEventListener('click', setTimer)
-function setTimer() {
-    // Code for timer here ************************************
+const timeSection = document.querySelector('.time-container');
+let timeRun = document.querySelector('.realTimer');
+let timeSecond = 60;
+let timerDisplay = false;
+timerSwitch.addEventListener('click', applyTimer)
+function applyTimer() {
+    //code for timer here ************************************
+    timeSection.style.visibility = 'visible';
+    
+    timeRun.innerHTML = timeSecond;    
 }
+
+function startTimer() {
+     const countDown = setInterval (() => {
+        timeSecond--;
+        timeRun.innerHTML = timeSecond;
+        if(timeSecond <=0 || timeSecond < 1) {
+            endTime()
+            clearInterval(countDown)
+        }
+    },1000)
+    
+}
+
+timerSwitch.addEventListener('click', displayTimer)
+    function displayTimer() {
+        if (timerDisplay) {
+            timeSection.style.visibility = 'hidden'
+            timerDisplay = false
+        } else {
+            timeSection.style.display = 'visible'
+            timerDisplay = true
+        }
+    }
+        
+
+function endTime() {
+    timeRun.innerHTML = 'TIME OUT'
+}
+
+    // Code for timer here ************************************

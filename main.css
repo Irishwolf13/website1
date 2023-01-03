@@ -301,3 +301,21 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 /*  *********** END Toggle buttons Timer and Dark Theme *********** */
+
+/* TIMER */
+.time-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+  display: flex;
+}
+.timerImage {
+  max-width: 70px;
+  max-height: 70px;
+}
+.realTimer {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 70px;
+}
+ 
