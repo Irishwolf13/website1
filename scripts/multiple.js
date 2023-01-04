@@ -25,14 +25,18 @@ function getWordMultipleChoice(myWord) {
 
 
 
-    // console.log(_currentAPIdefinitions)
     adjustMainWord(`${_currentAPIdefinitions[0]}`, 'Multiple')
-// create button w/label
+
         for (let i = 0; i < 4; i++) {
         let button = document.createElement('button')
         button.innerText = newArray[i]
         button.addEventListener('click', (e) => {
-            console.log('clicked')
+           if (e.target.innerText === myWord) {
+            numberOfPoints = numberOfPoints + 100
+            console.log(numberOfPoints)
+           } else {
+              console.log('not clicked')
+           }
         })
         listContainer.appendChild(button)
     }
