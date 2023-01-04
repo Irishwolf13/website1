@@ -40,5 +40,5 @@ function getWordMultipleChoice(myWord) {
         })
         listContainer.appendChild(button)
     }
-
+    setNavButtons()
 }
