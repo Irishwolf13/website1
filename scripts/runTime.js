@@ -10,12 +10,16 @@ startButton.addEventListener('click', () => {
     }
     audioButton.style.visibility = 'visible'
 })
+
 optionStartButton.addEventListener('click', () => {
     loadCurrentGame()
     hideShowOptions()
-
     if (timerDisplay) {
         timerFunc()
+        timeSecond = 60;
+        timeRun.innerHTML = timeSecond;
+        clearInterval(countDown)
+        endTime()
     }
     audioButton.style.visibility = 'visible'
 })
@@ -28,7 +32,7 @@ function loadCurrentGame() {
     startButton.remove();
     if (_currentGame == 'synonym') {
         createSynonymGame(currentWord)
-    }else if (_currentGame == 'definition') {
+    } else if (_currentGame == 'definition') {
         getWordMultipleChoice(currentWord)
     }
 }
@@ -64,16 +68,29 @@ function applyTimer() {
     timeRun.innerHTML = timeSecond;    
 }
 //timer countdown---------------------------------------
-const timerFunc = 
+// const timerFunc = 
+//     () => {
+//      const countDown = setInterval (() => {
+//         timeSecond--;
+//         timeRun.innerHTML = timeSecond;
+//         if(timeSecond <=0 || timeSecond < 1) {
+//             endTime()
+//             clearInterval(countDown)
+//         }
+//     },1000)
+// }
+const timerFunc =
     () => {
      const countDown = setInterval (() => {
-        timeSecond--;
         timeRun.innerHTML = timeSecond;
-        if(timeSecond <=0 || timeSecond < 1) {
-            endTime()
+        if(timeSecond > 0) {
+            timeSecond--;
+        } else if (timeSecond == 0) {
             clearInterval(countDown)
+            endTime()
         }
-    },1000)
+    }
+    ,1000)
 }
 
 timerSwitch.addEventListener('click', displayTimer)
