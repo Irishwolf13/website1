@@ -1,3 +1,6 @@
+timesUp = false;
+let countDown = false;
+
 startButton.addEventListener('click', () => {
     loadCurrentGame()
     if (optionsVisible) {
@@ -5,6 +8,8 @@ startButton.addEventListener('click', () => {
     }
 
     if (timerDisplay) {
+        timeSecond = timeCurrent;
+        timeRun.innerHTML = fancyTimeFormat(timeSecond);
         applyTimer()
         timerFunc()
     }
@@ -12,9 +17,17 @@ startButton.addEventListener('click', () => {
 })
 
 optionStartButton.addEventListener('click', () => {
+    if (timesUp) {
+        timesUp.remove()
+    }
     loadCurrentGame()
     hideShowOptions()
     if (timerDisplay) {
+        if (countDown) {
+            clearInterval(countDown)
+        }
+        timeSecond = timeCurrent;
+        timeRun.innerHTML = fancyTimeFormat(timeSecond);
         timerFunc()
         timeSecond = 60;
         timeRun.innerHTML = timeSecond;
@@ -59,38 +72,40 @@ function setNavButtons() {
     middleAreaNextWord.append(div)
 }
 
+
 // Timer here ************************************
 timerSwitch.addEventListener('click', applyTimer)
 //display timer--------------------------------------------------------
 function applyTimer() {
     timeSection.style.visibility = 'visible';
-    
-    timeRun.innerHTML = timeSecond;    
+    timeRun.innerHTML = fancyTimeFormat(timeSecond);    
 }
 //timer countdown---------------------------------------
-// const timerFunc = 
-//     () => {
-//      const countDown = setInterval (() => {
-//         timeSecond--;
-//         timeRun.innerHTML = timeSecond;
-//         if(timeSecond <=0 || timeSecond < 1) {
-//             endTime()
-//             clearInterval(countDown)
-//         }
-//     },1000)
-// }
-const timerFunc =
+const timerFunc = 
     () => {
-     const countDown = setInterval (() => {
-        timeRun.innerHTML = timeSecond;
+    countDown = setInterval (() => {
         if(timeSecond > 0) {
             timeSecond--;
-        } else if (timeSecond == 0) {
-            clearInterval(countDown)
+            timeRun.innerHTML = fancyTimeFormat(timeSecond);
+        } else { 
             endTime()
+            clearInterval(countDown) 
         }
     }
-    ,1000)
+    ,1000) }
+
+function fancyTimeFormat(duration) {
+    let hrs = ~~(duration / 3600)
+    let mins = ~~((duration % 3600) / 60)
+    let secs = ~~(duration % 60)
+    let ret = ""
+    if (hrs > 0) {
+        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    }
+
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
 }
 
 timerSwitch.addEventListener('click', displayTimer)
@@ -114,7 +129,7 @@ function endTime() {
     const nextButton = document.querySelector('.nextButton');
     nextButton.remove();
     timeRun.innerHTML = 'TIME OUT'
-    const timesUp = document.createElement('div')
+    timesUp = document.createElement('div')
     timesUp.className = "timesUp"
 //-----Game over image--------------------------------
     const gameOver = document.createElement('img')
@@ -135,11 +150,14 @@ function endTime() {
     restartButton.addEventListener('click', (myWord) => { 
         timesUp.remove()
         if (timerDisplay) {
-            timeSecond = 60;
-            timeRun.innerHTML = timeSecond;
+            timeSecond = timeCurrent;
+            timeRun.innerHTML = fancyTimeFormat(timeSecond);
+            createSynonymGame(myWord)
             timerFunc()
+        } else {
+            createSynonymGame(myWord)
         }
-        createSynonymGame(myWord)
+        
     })
     middleArea.appendChild(timesUp)
     }
