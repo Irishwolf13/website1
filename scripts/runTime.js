@@ -3,14 +3,20 @@ startButton.addEventListener('click', () => {
     if (optionsVisible) {
         hideShowOptions()
     }
-    applyTimer()
-    timerFunc()
+
+    if (timerDisplay) {
+        applyTimer()
+        startTimer()
+    }
     audioButton.style.visibility = 'visible'
 })
 optionStartButton.addEventListener('click', () => {
     loadCurrentGame()
     hideShowOptions()
-    timerFunc()
+
+    if (timerDisplay) {
+        startTimer()
+    }
     audioButton.style.visibility = 'visible'
 })
 
@@ -48,17 +54,9 @@ function setNavButtons() {
     div.append(img)
     middleAreaNextWord.append(div)
 }
-// Dark theme here ************************************
-darkThemeSwtich.addEventListener('click', applyDarkTheme)
-function applyDarkTheme() {
-    // Code for dark theme here ************************************
-}
 
 // Timer here ************************************
-const timeSection = document.querySelector('.time-container');
-let timeRun = document.querySelector('.realTimer');
-let timeSecond = 1;
-let timerDisplay = false;
+
 timerSwitch.addEventListener('click', applyTimer)
 //display timer--------------------------------------------------------
 function applyTimer() {
