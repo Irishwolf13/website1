@@ -26,7 +26,11 @@ let _currentAudio = ''
 let optionsVisible = false;
 let gameStarted = false;
 let timeRun = document.querySelector('.realTimer');
-let timeSecond = 60;
+let timeEasy = 60
+let timeMedium = 1000
+let timeHard = 500
+let timeCurrent = timeEasy
+let timeSecond = timeEasy
 let timerDisplay = false;
 infoFromAPI(currentWord)
 
@@ -178,14 +182,17 @@ function switchDificulty(button) {
         case 'easy':
             optionDifMedium.id = ''
             optionDifHard.id = ''
+            timeCurrent = timeEasy
         break
         case'medium':
             optionDifEasy.id = ''
             optionDifHard.id = ''
+            timeCurrent = timeMedium
         break
         case 'hard':
             optionDifEasy.id = ''
             optionDifMedium.id = ''
+            timeCurrent = timeHard
         break
     }
 }
