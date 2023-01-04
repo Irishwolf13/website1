@@ -15,13 +15,13 @@ startButton.addEventListener('click', () => {
     }
     audioButton.style.visibility = 'visible'
 })
+
 optionStartButton.addEventListener('click', () => {
     if (timesUp) {
         timesUp.remove()
     }
     loadCurrentGame()
     hideShowOptions()
-
     if (timerDisplay) {
         if (countDown) {
             clearInterval(countDown)
@@ -29,6 +29,10 @@ optionStartButton.addEventListener('click', () => {
         timeSecond = timeCurrent;
         timeRun.innerHTML = fancyTimeFormat(timeSecond);
         timerFunc()
+        timeSecond = 60;
+        timeRun.innerHTML = timeSecond;
+        clearInterval(countDown)
+        endTime()
     }
     audioButton.style.visibility = 'visible'
 })
@@ -41,7 +45,7 @@ function loadCurrentGame() {
     startButton.remove();
     if (_currentGame == 'synonym') {
         createSynonymGame(currentWord)
-    }else if (_currentGame == 'definition') {
+    } else if (_currentGame == 'definition') {
         getWordMultipleChoice(currentWord)
     }
 }
@@ -77,7 +81,6 @@ function applyTimer() {
     timeRun.innerHTML = fancyTimeFormat(timeSecond);    
 }
 //timer countdown---------------------------------------
-
 const timerFunc = 
     () => {
     countDown = setInterval (() => {

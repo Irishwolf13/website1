@@ -12,12 +12,12 @@ let numberOfPoints = 0;
 let _APIword = {};
 let _APIsynonyms = {};
 let _APIantonyms = {};
-let _APIdefinitions = {};
+let _APIdefinitions = [];
 let _APInumberOfSynonyms = 0;
 let _nextAPIword = {};
 let _currentAPIsynonyms = {};
 let _currentAPIantonyms = {};
-let _currentAPIdefinitions = {};
+let _currentAPIdefinitions = [];
 let _currentNumberOfSynonyms = 0;
 let _currentGame = 'synonym';
 let _currentDifficulty = 'easy';
@@ -109,9 +109,10 @@ function setUpNewWord() {
     _nextAPIword = _APIword
     _currentAPIsynonyms =_APIsynonyms
     _currentAPIantonyms = _APIantonyms
-    _nextAPIdefinitions = _APIdefinitions
+    _currentAPIdefinitions = _APIdefinitions
     _APIsynonyms = {};
     _APIantonyms = {};
+    _APIdefinitions = [];
     getNewRandomWord()
     infoFromAPI(currentWord)
 }
@@ -127,12 +128,25 @@ function infoFromAPI(myWord) {
     })
     .then((apiReturn) => apiReturn.json())
     .then((response) => {
+        // console.log(response)
         // This gets the audio for the current word
         response[0].phonetics.forEach((phonetic) => {
             if (phonetic.audio != '') {
                 _nextAudio = phonetic.audio
             }
         })
+        // This is where we get our definitions
+        response.forEach(element => {
+            element.meanings.forEach(e => {
+                e.definitions.forEach(deff => {
+                    // console.log(typeof(deff.definition))
+                    if (!deff.definition.includes(myWord.toLowerCase()) ){
+                        _APIdefinitions.push(deff.definition)
+                    }
+                })
+            })
+        })
+        // console.log(_APIdefinitions)
         // This gets the synonyms for the current word
         response.forEach(element => {
             element.meanings.forEach(e => {
