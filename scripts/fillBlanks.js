@@ -26,13 +26,6 @@ function createSynonymGame(myWord) {
         const hintText = document.querySelector('.hint')
         if (_currentDifficulty === 'easy') {
             hintText.innerHTML = "Each time you click on a box below you will get see the next letter in that word."
-            // This code was causing too many Fetch requests.
-            // button.addEventListener('mouseenter', (e) => {
-            //     hintText.innerHTML = _currentAPIsynonyms[`${mySynonym}`]
-            // })
-            // button.addEventListener('mouseleave', () => {
-            //     hintText.innerHTML = ""
-            // })
         }
         if (_currentDifficulty === 'medium') {
             hintText.innerHTML = "Each time you click on a box below you will get see the next letter in that word.  Using this hint, will cut the value in half."

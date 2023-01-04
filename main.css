@@ -1,23 +1,39 @@
+:root {
+  --primary-color: #E9A242;
+  --secondary-color: #FDF8D4;
+  --font-color: #382710;
+  --bg-color: #fff;
+}
+
+[data-theme="dark"] {
+  --primary-color: #c28c42;
+  --secondary-color: #815e2c;
+  --font-color: black;
+  --bg-color: #382710;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--font-color);
 }
 .flex-container {
   min-height: 55vh;
   width: 100%;
   min-width: 400px;
   position: relative;
-  background-color: #fef8d4;
+  background-color: var(--secondary-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   border-style: solid;
-  border-color:black;
+  border-color: var(--font-color);
   border-top-style: none;
   padding-bottom: 100px;
 }
 .titlebar {
   display: flex;
-  background-color: #e8a243;
+  background-color: var(--primary-color);
   min-height: 1em;
   width: 60%;
   padding-left: 20%;
@@ -28,7 +44,8 @@ body {
   justify-content: center;
   font-size: 3em;
   border-style: solid;
-  border-color:black;
+  border-color: var(--font-color);
+  color: var(--font-color);
 }
 .cinnamonRoll {
   max-width: 50px;
@@ -68,8 +85,11 @@ body {
 }
 /* OPTIONS MENU */
 .optionMenuButton {
-  font-size: 1.2em;
+  font-size: 1em;
   box-shadow: 2px 3px #16384e;
+  border-radius: 12px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 .optionContainer {
   min-width: 250px;
@@ -80,13 +100,15 @@ body {
   height: 0px;
   border-width: 1px;
   padding: 0 20px 10px 20px;
-  background-color: #e8a243;
+  background-color: var(--primary-color);
   box-shadow: 3px 5px #16384e;
   z-index: 100;
-  top: 83px;
+  top: 96px;
+  border-radius: 25px;
 }
 .optionContainer div div {
   font-size: 1.5em;
+  margin-top: 10px;
 }
 .optionStartButton {
   position: absolute;
@@ -101,10 +123,12 @@ body {
 #myGameType, #myDificulty {
   background-color: black;
   color: white;
+  border-radius: 12px;
 }
 .easy, .medium, .hard, .selectSynonym, .selecDefinition {
   cursor: pointer;
   box-shadow: 1px 1px #16384e;
+  border-radius: 12px;
 }
 /* SYNONYM GAME */
 .inputArea {
@@ -176,7 +200,6 @@ body {
 }
 
 .synonym-List {
-  /* max-width: 500px; */
   font-size: 2.0em;
   margin-bottom: 1em;
   display: flex;
@@ -185,7 +208,6 @@ body {
 }
 
 .synonym-List-Multiple {
-  /* max-width: 500px; */
   font-size: 2.0em;
   margin-bottom: 1em;
   display: flex;
@@ -212,11 +234,13 @@ body {
   flex: 1 1 10%;
   white-space: nowrap;
   position: relative;
+  border-radius: 10px;
 }
 .audioButton {
   position: relative;
   visibility: hidden;
   margin-bottom: 20px;
+  border-radius: 8px;
 }
 .hint {
   max-width: 700px;
@@ -248,9 +272,7 @@ body {
 }
 
 .switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
+  display:none;
 }
 
 .slider {
@@ -261,8 +283,6 @@ body {
   right: 0;
   bottom: 0;
   background-color: black;
-  /* -webkit-transition: .4s;
-  transition: .4s; */
 }
 
 .slider:before {
@@ -273,22 +293,14 @@ body {
   left: 30px;
   bottom: 4px;
   background-color: white;
-  /* -webkit-transition: .4s;
-  transition: .4s; */
 }
 
 input:checked + .slider {
-  background-color: #949494;
+  background-color: #d4d4d4;
   border-color: black;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px black;
-}
-
 input:checked + .slider:before {
-  /* -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px); */
   transform: translateX(-26px);
 }
 
