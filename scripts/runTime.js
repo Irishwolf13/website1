@@ -156,4 +156,4 @@ function endTime() {
         
     })
     middleArea.appendChild(timesUp)
-    }
+}
