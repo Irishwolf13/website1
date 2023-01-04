@@ -1,5 +1,6 @@
-rawData = `
-Form
+rawData =
+`Form
+Size
 Large
 Small
 Long
@@ -103,5 +104,4 @@ Lucky
 Well
 Safe
 Safe
-Dangerous
-`
+Dangerous`
