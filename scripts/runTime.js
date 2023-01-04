@@ -4,13 +4,13 @@ startButton.addEventListener('click', () => {
         hideShowOptions()
     }
     applyTimer()
-    startTimer()
+    timerFunc()
     audioButton.style.visibility = 'visible'
 })
 optionStartButton.addEventListener('click', () => {
     loadCurrentGame()
     hideShowOptions()
-    startTimer()
+    timerFunc()
     audioButton.style.visibility = 'visible'
 })
 
@@ -57,17 +57,19 @@ function applyDarkTheme() {
 // Timer here ************************************
 const timeSection = document.querySelector('.time-container');
 let timeRun = document.querySelector('.realTimer');
-let timeSecond = 60;
+let timeSecond = 1;
 let timerDisplay = false;
 timerSwitch.addEventListener('click', applyTimer)
+//display timer--------------------------------------------------------
 function applyTimer() {
     //code for timer here ************************************
     timeSection.style.visibility = 'visible';
     
     timeRun.innerHTML = timeSecond;    
 }
-
-function startTimer() {
+//timer countdown---------------------------------------
+const timerFunc = 
+    () => {
      const countDown = setInterval (() => {
         timeSecond--;
         timeRun.innerHTML = timeSecond;
@@ -76,7 +78,6 @@ function startTimer() {
             clearInterval(countDown)
         }
     },1000)
-    
 }
 
 timerSwitch.addEventListener('click', displayTimer)
@@ -90,9 +91,42 @@ timerSwitch.addEventListener('click', displayTimer)
         }
     }
         
-
+//-------------------time out function---------------------
 function endTime() {
+    myWordDisplay.innerHTML = '';
+    audioButton.remove();
+    removeElementsFromDOM(listContainer)    // Clears DOM for the following appends
+    removeElementsFromDOM(gameInput)        // Clears DOM for the following appends
+    setPoints(numberOfPoints)  
+    const nextButton = document.querySelector('.nextButton');
+    nextButton.remove();
     timeRun.innerHTML = 'TIME OUT'
-}
+    const timesUp = document.createElement('div')
+    timesUp.className = "timesUp"
+//-----Game over image--------------------------------
+    const gameOver = document.createElement('img')
+    timesUp.appendChild(gameOver)
+    gameOver.src = "images/gameOver.png"
+    gameOver.className = "gameOver"
+//------Point report--------------------------------
+    const pointsRecord = document.createElement('div')
+    pointsRecord.className = "pointsRecord"
+    pointsRecord.innerText = `Your Points: ${numberOfPoints}`
+    timesUp.appendChild(pointsRecord)
+//-----restart Button---------------------------------
+    const restartButton = document.createElement('button')
+    restartButton.className = "restartButton"
+    restartButton.innerText = "RESTART"
+    timesUp.appendChild(restartButton)
+
+    restartButton.addEventListener('click', (myWord) => { 
+        timesUp.remove()
+        createSynonymGame(myWord)
+
+    
+
+    })
+    middleArea.appendChild(timesUp)
+    }
 
     // Code for timer here ************************************
