@@ -7,11 +7,21 @@ function getWordMultipleChoice(myWord) {
     // Sets up next word
     setUpNewWord()
 
-    let newArray = ['myWord', 'myWord', 'myWord', 'myWord']
+    let newArray = []
+
+    for (let i = 0; i < 4; i++) {
+        let largeNumber = Math.floor(Math.random() * (myArrayOfWords.length - 1))
+        let largeWord = myArrayOfWords[largeNumber]
+        while (largeWord === myWord) {
+            largeNumber = Math.floor(Math.random() * (myArrayOfWords.length - 1))
+            largeWord = myArrayOfWords[largeNumber]
+        }
+        newArray[i] = largeWord
+    }
+    console.log(newArray)
     let myNumber = Math.floor(Math.random() * newArray.length)
     console.log(myNumber)
     newArray[myNumber] = myWord
-
 
 
 
