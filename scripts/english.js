@@ -3,7 +3,6 @@ rawData =
 Size
 Large
 Small
-Length
 Long
 Short
 Thick
@@ -41,8 +40,6 @@ Noisy
 Loud
 Strong
 Quiet
-Water
-Dry
 Wet
 Clear
 Things
@@ -78,10 +75,8 @@ Bad
 Great
 Important
 Useful
-Expensive
 Cheap
 Free
-Power
 Difficult
 Strong
 Weak
@@ -99,10 +94,8 @@ Liked
 Clever
 Interesting
 Famous
-Funny
 Team
 Kind
-Polite
 Fair
 Busy
 Free

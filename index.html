@@ -9,16 +9,21 @@
 </head>
 <body>
     <div class="flex-container">
+      <!-- This contains timer-->
+      <div class = "time-container"> 
+        <img class="timerImage" src="images/timerImage.gif">
+        <div class="realTimer"></div>
+     </div>
       <!-- This contains the score circle -->
         <div class="circle">
-            <div class="pointsTitle"></div>
-            <div class="score"></div>
-            <div class="difficulty"></div>
+          <div class="pointsTitle"></div>
+          <div class="score"></div>
+          <div class="difficulty"></div>
         </div>
         <!-- Head title bar stuff -->
-        <div class="titlebar">
-          <img class="cinnamonRoll" src="images/cinnamonRolls.png" alt="">         
-          <div class="synonymRollTitle">Synonym Roll</div>
+        <div class="titlebar">         
+          <img class="cinnamonRoll" src="images/cinnamonRolls.png" alt="">
+          <div class="synonymRollTitle"> Synonym Roll </div>
           <img class="cinnamonRoll" src="images/cinnamonRolls.png" alt="">
         </div>
         <button class="optionMenuButton">Options</button>
@@ -40,15 +45,15 @@
           <div>
             <div>Timer</div>
             <label class="switch">
-                <input type="checkbox" checked>
-                <span id="timerSwitch" class="slider round"></span>
+              <input type="checkbox" checked>
+              <span id="timerSwitch" class="slider round"></span>
             </label>
           </div>
           <div class="optionDark">
-            <div>Dark Theme</div>
-            <label class="switch">
-                <input type="checkbox" checked>
-                <span id="darkThemeSwtich" class="slider round"></span>
+            <div>Dark Mode</div>
+            <label class="switch" id="darkThemeSwitch">
+              <input type="checkbox" checked>
+              <span class="slider round"></span>
             </label>
           </div>
         </div>
@@ -59,9 +64,9 @@
         </div>
         <div class="inputArea"></div>
         <div class="middleArea">
-            <div class="synonym-List"></div>
-            <div class="middleAreaNextWord"></div>
-            <div class="middleAreaCount"></div>
+          <div class="synonym-List"></div>
+          <div class="middleAreaNextWord"></div>
+          <div class="middleAreaCount"></div>
         </div>  
     </div>
 </body>

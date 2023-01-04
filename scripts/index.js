@@ -21,13 +21,13 @@ let _currentAPIdefinitions = [];
 let _currentNumberOfSynonyms = 0;
 let _currentGame = 'synonym';
 let _currentDifficulty = 'easy';
-let _isTimer = false;
-let _timerCounter = 60;
-let darkTheme = false;
 let _nextAudio = ''
 let _currentAudio = ''
 let optionsVisible = false;
 let gameStarted = false;
+let timeRun = document.querySelector('.realTimer');
+let timeSecond = 60;
+let timerDisplay = false;
 infoFromAPI(currentWord)
 
 // Gather up the Troops(HTML elements)
@@ -43,16 +43,16 @@ const listContainer = document.querySelector('.synonym-List')
 const optionContainer = document.querySelector('.optionContainer')
 const optionGameType = document.querySelector('.optionGameType')
 const optionDifficulty = document.querySelector('.optionDifficulty')
-const optionTimer = document.getElementById('timerSwitch')
-const optionDark = document.getElementById('darkThemeSwtich')
 const optionMenuButton = document.querySelector('.optionMenuButton')
 const startButton = document.querySelector('.startButton')
 const optionStartButton = document.querySelector('.optionStartButton')
 const optionDifEasy = document.querySelector('.easy')
 const optionDifMedium = document.querySelector('.medium')
 const optionDifHard = document.querySelector('.hard')
-const darkThemeSwtich = document.getElementById('darkThemeSwtich')
+const darkModeSwitch = document.querySelector('#darkThemeSwitch input[type="checkbox"]')
 const timerSwitch = document.getElementById('timerSwitch')
+const timeSection = document.querySelector('.time-container');
+
 //This bit is for playing the mp3 file
 const audioButton = document.querySelector('.audioButton')
 audioButton.innerHTML = 'Hear Word'
@@ -68,7 +68,7 @@ function hideShowOptions() {
         optionContainer.style.visibility = 'hidden'
         optionsVisible = false
     } else {
-        optionContainer.style.height = '200px'
+        optionContainer.style.height = '240px'
         optionContainer.style.visibility = 'visible'
         optionsVisible = true
     }
@@ -149,24 +149,6 @@ function infoFromAPI(myWord) {
                 e.synonyms.forEach(s => {
                     if (!s.includes(" ")){
                         _APIsynonyms[s] = true;
-                        // This code caused too many requests So I have to cut it out.
-                        // fetch(`${remoteUrl}${s}`, {
-                        //     method: "GET",
-                        //     headers: {
-                        //         'Content-Type': 'application/json',
-                        //         'Accept': 'application/json'
-                        //     },
-                        // })
-                        // .then(response => response.json())
-                        // .then(mySynonymWord => {
-                        //     try {
-                        //         let myDef = mySynonymWord[0].meanings[0].definitions[0].definition
-                        //         _APIsynonyms[s] = myDef;
-                        //         _APInumberOfSynonyms ++;
-                        //     } catch (e) {
-                        //         delete _APIsynonyms[s]
-                        //     }
-                        // })
                     }
                 })
             })
@@ -225,10 +207,18 @@ optionDifEasy.addEventListener('click', switchDificulty)
 optionDifMedium.addEventListener('click', switchDificulty)
 optionDifHard.addEventListener('click', switchDificulty)
 
-optionTimer.addEventListener('click', (e) => {
-    _isTimer ? _isTimer = false : _isTimer = true
-})
-optionDark.addEventListener('click', (e) => {
-    darkTheme ? darkTheme = false : darkTheme = true
-})
+// optionTimer.addEventListener('click', (e) => {
+//     _isTimer ? _isTimer = false : _isTimer = true
+// })
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+    else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }    
+}
+darkModeSwitch.addEventListener('change', switchTheme, false)
+
 // END section is for game setup using Options *************************************
