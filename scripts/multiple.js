@@ -30,15 +30,34 @@ function getWordMultipleChoice(myWord) {
         for (let i = 0; i < 4; i++) {
         let button = document.createElement('button')
         button.innerText = newArray[i]
+        button.id = newArray[i]
         button.addEventListener('click', (e) => {
            if (e.target.innerText === myWord) {
             numberOfPoints = numberOfPoints + 100
-            console.log(numberOfPoints)
+            setPoints(numberOfPoints)
+
+
+            e.target.style.background = "green"
+
+            myWord = ''
+
            } else {
-              console.log('not clicked')
-           }
+            if (myWord !== '') {
+                let clickedButton = document.getElementById(myWord)
+                myWord = ''
+                e.target.style.background = "red"
+                setTimeout(function(){
+                    e.target.style.background = "white";
+                    clickedButton.style.background = "green"
+                  }, 500);
+                }
+            }
         })
+
         listContainer.appendChild(button)
     }
     setNavButtons()
 }
+
+
+
