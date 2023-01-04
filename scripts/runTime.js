@@ -56,11 +56,9 @@ function setNavButtons() {
 }
 
 // Timer here ************************************
-
 timerSwitch.addEventListener('click', applyTimer)
 //display timer--------------------------------------------------------
 function applyTimer() {
-    //code for timer here ************************************
     timeSection.style.visibility = 'visible';
     
     timeRun.innerHTML = timeSecond;    
@@ -119,12 +117,12 @@ function endTime() {
 
     restartButton.addEventListener('click', (myWord) => { 
         timesUp.remove()
+        if (timerDisplay) {
+            timeSecond = 60;
+            timeRun.innerHTML = timeSecond;
+            timerFunc()
+        }
         createSynonymGame(myWord)
-
-    
-
     })
     middleArea.appendChild(timesUp)
     }
-
-    // Code for timer here ************************************
