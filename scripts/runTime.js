@@ -29,10 +29,6 @@ optionStartButton.addEventListener('click', () => {
         timeSecond = timeCurrent;
         timeRun.innerHTML = fancyTimeFormat(timeSecond);
         timerFunc()
-        timeSecond = 60;
-        timeRun.innerHTML = timeSecond;
-        clearInterval(countDown)
-        endTime()
     }
     audioButton.style.visibility = 'visible'
 })
