@@ -3,14 +3,18 @@ startButton.addEventListener('click', () => {
     if (optionsVisible) {
         hideShowOptions()
     }
-    applyTimer()
-    startTimer()
+    if (timerDisplay) {
+        applyTimer()
+        startTimer()
+    }
     audioButton.style.visibility = 'visible'
 })
 optionStartButton.addEventListener('click', () => {
     loadCurrentGame()
     hideShowOptions()
-    startTimer()
+    if (timerDisplay) {
+        startTimer()
+    }
     audioButton.style.visibility = 'visible'
 })
 
@@ -50,10 +54,6 @@ function setNavButtons() {
 }
 
 // Timer here ************************************
-const timeSection = document.querySelector('.time-container');
-let timeRun = document.querySelector('.realTimer');
-let timeSecond = 60;
-let timerDisplay = false;
 timerSwitch.addEventListener('click', applyTimer)
 function applyTimer() {
     //code for timer here ************************************

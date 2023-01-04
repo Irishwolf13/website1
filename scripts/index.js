@@ -21,12 +21,13 @@ let _currentAPIdefinitions = {};
 let _currentNumberOfSynonyms = 0;
 let _currentGame = 'synonym';
 let _currentDifficulty = 'easy';
-let _isTimer = false;
-let _timerCounter = 60;
 let _nextAudio = ''
 let _currentAudio = ''
 let optionsVisible = false;
 let gameStarted = false;
+let timeRun = document.querySelector('.realTimer');
+let timeSecond = 60;
+let timerDisplay = false;
 infoFromAPI(currentWord)
 
 // Gather up the Troops(HTML elements)
@@ -42,7 +43,6 @@ const listContainer = document.querySelector('.synonym-List')
 const optionContainer = document.querySelector('.optionContainer')
 const optionGameType = document.querySelector('.optionGameType')
 const optionDifficulty = document.querySelector('.optionDifficulty')
-const optionTimer = document.getElementById('timerSwitch')
 const optionMenuButton = document.querySelector('.optionMenuButton')
 const startButton = document.querySelector('.startButton')
 const optionStartButton = document.querySelector('.optionStartButton')
@@ -51,6 +51,7 @@ const optionDifMedium = document.querySelector('.medium')
 const optionDifHard = document.querySelector('.hard')
 const darkModeSwitch = document.querySelector('#darkThemeSwitch input[type="checkbox"]')
 const timerSwitch = document.getElementById('timerSwitch')
+const timeSection = document.querySelector('.time-container');
 
 //This bit is for playing the mp3 file
 const audioButton = document.querySelector('.audioButton')
@@ -192,9 +193,9 @@ optionDifEasy.addEventListener('click', switchDificulty)
 optionDifMedium.addEventListener('click', switchDificulty)
 optionDifHard.addEventListener('click', switchDificulty)
 
-optionTimer.addEventListener('click', (e) => {
-    _isTimer ? _isTimer = false : _isTimer = true
-})
+// optionTimer.addEventListener('click', (e) => {
+//     _isTimer ? _isTimer = false : _isTimer = true
+// })
 
 function switchTheme(e) {
     if (e.target.checked) {
