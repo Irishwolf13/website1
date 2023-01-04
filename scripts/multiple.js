@@ -56,17 +56,8 @@ function getWordMultipleChoice(myWord) {
 
         listContainer.appendChild(button)
     }
-    let nextButton = document.createElement('button')
-    nextButton.innerText = 'New Word'
-    nextButton.addEventListener('click', (e) => {
-        if (e.target === nextButton) {
-            setUpNewWord()
-        }
-    })
-    middleAreaNextWord.appendChild(nextButton)
+    setNavButtons()
 }
-
-
 
 
 
