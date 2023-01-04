@@ -6,7 +6,7 @@ startButton.addEventListener('click', () => {
 
     if (timerDisplay) {
         applyTimer()
-        startTimer()
+        timerFunc()
     }
     audioButton.style.visibility = 'visible'
 })
@@ -15,7 +15,7 @@ optionStartButton.addEventListener('click', () => {
     hideShowOptions()
 
     if (timerDisplay) {
-        startTimer()
+        timerFunc()
     }
     audioButton.style.visibility = 'visible'
 })
@@ -79,15 +79,15 @@ const timerFunc =
 }
 
 timerSwitch.addEventListener('click', displayTimer)
-    function displayTimer() {
-        if (timerDisplay) {
-            timeSection.style.visibility = 'hidden'
-            timerDisplay = false
-        } else {
-            timeSection.style.display = 'visible'
-            timerDisplay = true
-        }
+function displayTimer() {
+    if (timerDisplay) {
+        timeSection.style.visibility = 'hidden'
+        timerDisplay = false
+    } else {
+        timeSection.style.display = 'visible'
+        timerDisplay = true
     }
+}
         
 //-------------------time out function---------------------
 function endTime() {
