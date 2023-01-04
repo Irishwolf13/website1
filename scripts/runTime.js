@@ -48,11 +48,6 @@ function setNavButtons() {
     div.append(img)
     middleAreaNextWord.append(div)
 }
-// Dark theme here ************************************
-darkThemeSwtich.addEventListener('click', applyDarkTheme)
-function applyDarkTheme() {
-    // Code for dark theme here ************************************
-}
 
 // Timer here ************************************
 const timeSection = document.querySelector('.time-container');
