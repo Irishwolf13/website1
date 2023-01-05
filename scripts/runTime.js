@@ -12,7 +12,6 @@ startButton.addEventListener('click', () => {
         timeSection.style.visibility = 'visible';
         applyTimer()
         timerFunc()
-        getHighScores()
     }
 })
 
@@ -35,7 +34,7 @@ optionStartButton.addEventListener('click', () => {
 
 function loadCurrentGame() {
     gameStarted = true;
-    numberOfPoints = 0;
+    numberOfPoints = 110;
     numberFound = 0;
     setPoints(numberOfPoints)
     startButton.remove();
@@ -113,6 +112,7 @@ function displayTimer() {
         
 //-------------------time out function---------------------
 function endTime() {
+    getHighScores()
     audioButton.style.visibility = 'hidden';
     myWordDisplay.innerHTML = '';
     removeElementsFromDOM(listContainer)    // Clears DOM for the following appends
@@ -128,6 +128,10 @@ function endTime() {
     timesUp.appendChild(gameOver)
     gameOver.src = "images/gameOver.png"
     gameOver.className = "gameOver"
+//-----High Scores div--------------------------------
+    const highScoresContainer = document.createElement('div')
+    highScoresContainer.className = "highScoresContainer"
+    timesUp.appendChild(highScoresContainer)
 //------Point report--------------------------------
     const pointsRecord = document.createElement('div')
     pointsRecord.className = "pointsRecord"
@@ -172,10 +176,27 @@ function getHighScores() {
     })
     .then((apiReturn) => apiReturn.json())
     .then((response) => {
-        console.log(response[0][_currentGame][_currentDifficulty])
+        _scoreArray = response[0][_currentGame][_currentDifficulty]
+        if (numberOfPoints >= _scoreArray[0]) {
+            _scoreArray.splice(0, 1, numberOfPoints)
+        } else if (numberOfPoints >= _scoreArray[1]) {
+            _scoreArray.splice(1, 1, numberOfPoints)
+        } else if (numberOfPoints >= _scoreArray[2]) {
+            _scoreArray.splice(2, 1, numberOfPoints)
+        }
+    })
+    .then(response => {
+        let highScoreContainer = document.querySelector('.highScoresContainer')
+        let p = document.createElement('p')
+        p.innerText = `1st:  ${_scoreArray[0]}`
+        highScoreContainer.appendChild(p)
+        let p2 = document.createElement('p')
+        p2.innerText = `2nd:  ${_scoreArray[1]}`
+        highScoreContainer.appendChild(p2)
+        let p3 = document.createElement('p')
+        p3.innerText = `3rd:  ${_scoreArray[2]}`
+        highScoreContainer.appendChild(p3)
     })
 }
-
-
 
     
