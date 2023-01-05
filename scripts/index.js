@@ -25,6 +25,7 @@ let _currentDifficulty = 'easy';
 let _nextAudio = ''
 let _currentAudio = ''
 let _highScores = [];
+let _scoreArray = [];
 let optionsVisible = false;
 let gameStarted = false;
 let timeRun = document.querySelector('.realTimer');

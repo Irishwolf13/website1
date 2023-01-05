@@ -35,7 +35,7 @@ optionStartButton.addEventListener('click', () => {
 
 function loadCurrentGame() {
     gameStarted = true;
-    numberOfPoints = 0;
+    numberOfPoints = 110;
     numberFound = 0;
     setPoints(numberOfPoints)
     startButton.remove();
@@ -172,10 +172,14 @@ function getHighScores() {
     })
     .then((apiReturn) => apiReturn.json())
     .then((response) => {
-        console.log(response[0][_currentGame][_currentDifficulty])
+        _scoreArray = response[0][_currentGame][_currentDifficulty]
+        if (numberOfPoints >= _scoreArray[0]) {
+            _scoreArray.splice(0, 1, numberOfPoints)
+        } else if (numberOfPoints >= _scoreArray[1]) {
+            _scoreArray.splice(1, 1, numberOfPoints)
+        } else if (numberOfPoints >= _scoreArray[2]) {
+            _scoreArray.splice(2, 1, numberOfPoints)
+        }
     })
 }
-
-
-
     
