@@ -1,4 +1,5 @@
 function getWordMultipleChoice(myWord) {
+    audioButton.style.visibility = 'hidden'
     removeElementsFromDOM(gameInput)
     removeElementsFromDOM(listContainer)
     setPoints(numberOfPoints)
@@ -6,7 +7,6 @@ function getWordMultipleChoice(myWord) {
     listContainer.classList.add('synonym-List-Multiple')
     // Sets up next word
     setUpNewWord()
-
     let newArray = []
 
     for (let i = 0; i < 4; i++) {
@@ -18,15 +18,10 @@ function getWordMultipleChoice(myWord) {
         }
         newArray[i] = largeWord
     }
-    console.log(newArray)
     let myNumber = Math.floor(Math.random() * newArray.length)
-    console.log(myNumber)
     newArray[myNumber] = myWord
 
-
-
     adjustMainWord(`${_currentAPIdefinitions[0]}`, 'Multiple')
-
         for (let i = 0; i < 4; i++) {
         let button = document.createElement('button')
         button.innerText = newArray[i]
@@ -35,12 +30,11 @@ function getWordMultipleChoice(myWord) {
            if (e.target.innerText === myWord) {
             numberOfPoints = numberOfPoints + 100
             setPoints(numberOfPoints)
-
-
             e.target.style.background = "green"
-
             myWord = ''
-
+            setTimeout(function(){
+                getWordMultipleChoice(currentWord)
+              }, 250);
            } else {
             if (myWord !== '') {
                 let clickedButton = document.getElementById(myWord)
@@ -53,11 +47,7 @@ function getWordMultipleChoice(myWord) {
                 }
             }
         })
-
         listContainer.appendChild(button)
     }
     setNavButtons()
 }
-
-
-

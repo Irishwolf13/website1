@@ -48,6 +48,9 @@ body {
   border-color: var(--font-color);
   color: var(--font-color);
 }
+.optionDark {
+  margin-top: -5px;
+}
 .cinnamonRoll {
   max-width: 50px;
   max-height: 50px;
@@ -113,8 +116,8 @@ body {
 }
 .optionStartButton {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 5px;
+  bottom: 7px;
   width: 90px;
   cursor: pointer;
 }
@@ -342,10 +345,6 @@ input:checked + .slider:before {
  left: 30%;
  top: 100px;
  border-radius: 10px;
- cursor: pointer;
-}
-.timesUp:hover {
-  box-shadow: 0 0 5px black;
 }
 .gameOver {
   width: 15em;

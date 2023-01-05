@@ -128,7 +128,6 @@ function infoFromAPI(myWord) {
     })
     .then((apiReturn) => apiReturn.json())
     .then((response) => {
-        // console.log(response)
         // This gets the audio for the current word
         response[0].phonetics.forEach((phonetic) => {
             if (phonetic.audio != '') {
@@ -139,14 +138,12 @@ function infoFromAPI(myWord) {
         response.forEach(element => {
             element.meanings.forEach(e => {
                 e.definitions.forEach(deff => {
-                    // console.log(typeof(deff.definition))
                     if (!deff.definition.includes(myWord.toLowerCase()) ){
                         _APIdefinitions.push(deff.definition)
                     }
                 })
             })
         })
-        // console.log(_APIdefinitions)
         // This gets the synonyms for the current word
         response.forEach(element => {
             element.meanings.forEach(e => {

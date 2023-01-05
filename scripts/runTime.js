@@ -6,14 +6,13 @@ startButton.addEventListener('click', () => {
     if (optionsVisible) {
         hideShowOptions()
     }
-
     if (timerDisplay) {
         timeSecond = timeCurrent;
         timeRun.innerHTML = fancyTimeFormat(timeSecond);
+        timeSection.style.visibility = 'visible';
         applyTimer()
         timerFunc()
     }
-    audioButton.style.visibility = 'visible'
 })
 
 optionStartButton.addEventListener('click', () => {
@@ -28,9 +27,9 @@ optionStartButton.addEventListener('click', () => {
         }
         timeSecond = timeCurrent;
         timeRun.innerHTML = fancyTimeFormat(timeSecond);
+        timeSection.style.visibility = 'visible';
         timerFunc()
     }
-    audioButton.style.visibility = 'visible'
 })
 
 function loadCurrentGame() {
@@ -68,12 +67,10 @@ function setNavButtons() {
     middleAreaNextWord.append(div)
 }
 
-
 // Timer here ************************************
 timerSwitch.addEventListener('click', applyTimer)
 //display timer--------------------------------------------------------
 function applyTimer() {
-    timeSection.style.visibility = 'visible';
     timeRun.innerHTML = fancyTimeFormat(timeSecond);    
 }
 //timer countdown---------------------------------------
@@ -87,8 +84,7 @@ const timerFunc =
             endTime()
             clearInterval(countDown) 
         }
-    }
-    ,1000) }
+    },1000)}
 
 function fancyTimeFormat(duration) {
     let hrs = ~~(duration / 3600)
@@ -98,7 +94,6 @@ function fancyTimeFormat(duration) {
     if (hrs > 0) {
         ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
     }
-
     ret += "" + mins + ":" + (secs < 10 ? "0" : "");
     ret += "" + secs;
     return ret;
@@ -117,8 +112,8 @@ function displayTimer() {
         
 //-------------------time out function---------------------
 function endTime() {
+    audioButton.style.visibility = 'hidden';
     myWordDisplay.innerHTML = '';
-    audioButton.remove();
     removeElementsFromDOM(listContainer)    // Clears DOM for the following appends
     removeElementsFromDOM(gameInput)        // Clears DOM for the following appends
     setPoints(numberOfPoints)  
@@ -140,20 +135,28 @@ function endTime() {
 //-----restart Button---------------------------------
     const restartButton = document.createElement('button')
     restartButton.className = "restartButton"
-    restartButton.innerText = "RESTART"
-    timesUp.appendChild(restartButton)
-
+    restartButton.innerText = "REPLAY"
     restartButton.addEventListener('click', (myWord) => { 
         timesUp.remove()
         if (timerDisplay) {
             timeSecond = timeCurrent;
             timeRun.innerHTML = fancyTimeFormat(timeSecond);
-            createSynonymGame(myWord)
+            timeSection.style.visibility = 'visible';
+            if (_currentGame == 'synonym') {
+                createSynonymGame(myWord)
+            } else if (_currentGame == 'definition') {
+                getWordMultipleChoice(myWord)
+            }
             timerFunc()
         } else {
-            createSynonymGame(myWord)
+            if (_currentGame == 'synonym') {
+                createSynonymGame(currentWord)
+            } else if (_currentGame == 'definition') {
+                getWordMultipleChoice(currentWord)
+            }
         }
-        
     })
+    timesUp.appendChild(restartButton)
     middleArea.appendChild(timesUp)
 }
+
