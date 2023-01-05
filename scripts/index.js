@@ -5,6 +5,7 @@ dataArray = dataArray.filter(line => line.includes(" ") !== true);
 const myArrayOfWords = dataArray;
 
 const remoteUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"    // My remote Url
+const localUrl = "http://localhost:3000/user"   // My local Url
 // Choose a random first word from the array of words and make it the current word.
 let myRandomNumber = Math.floor(Math.random() * myArrayOfWords.length);
 let currentWord = myArrayOfWords[myRandomNumber];
@@ -23,6 +24,7 @@ let _currentGame = 'synonym';
 let _currentDifficulty = 'easy';
 let _nextAudio = ''
 let _currentAudio = ''
+let _highScores = [];
 let optionsVisible = false;
 let gameStarted = false;
 let timeRun = document.querySelector('.realTimer');

@@ -12,6 +12,7 @@ startButton.addEventListener('click', () => {
         timeSection.style.visibility = 'visible';
         applyTimer()
         timerFunc()
+        getHighScores()
     }
 })
 
@@ -159,4 +160,22 @@ function endTime() {
     timesUp.appendChild(restartButton)
     middleArea.appendChild(timesUp)
 }
+//------GET high scores for current user function-------------
+function getHighScores() {
+    //GET function for grabbing high scores based on current game style and current difficulty level. stored in _highScores in index.js with all the other globally stored variables
+    fetch(localUrl, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+    .then((apiReturn) => apiReturn.json())
+    .then((response) => {
+        console.log(response[0][_currentGame][_currentDifficulty])
+    })
+}
 
+
+
+    
