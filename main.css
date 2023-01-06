@@ -43,17 +43,18 @@ body {
   z-index: 1;
   text-align: center;
   justify-content: center;
-  font-size: 3em;
+  /* font-size: 3em; */
   border-style: solid;
   border-color: var(--font-color);
   color: var(--font-color);
 }
-.optionDark {
-  margin-top: -5px;
-}
 .cinnamonRoll {
   max-width: 50px;
   max-height: 50px;
+}
+.synonymRollTitle {
+  max-height: 50px;
+  min-width: 250px;
 }
 .nextButton {
   max-width: 100px;
@@ -65,11 +66,6 @@ body {
 }
 .count {
   max-width: 100px;
-}
-.synonymRollTitle {
-  font-size: 0.8em;
-  margin: 0 20px 0 20px;
-  min-width: 250px;
 }
 .middleArea {
   width: 50%;
@@ -197,13 +193,16 @@ body {
   text-align: end;
 }
 .gameTypeBar {
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 20px;
-  font-size: 2em;
+  font-size: 1.5em;
   text-align: center;
   z-index: 3;
 }
-
+.gameTypeBar p {
+  font-size: .7em;
+  text-align: center;
+}
 .synonym-List {
   font-size: 2.0em;
   margin-bottom: 1em;
@@ -213,15 +212,24 @@ body {
 }
 
 .synonym-List-Multiple {
-  font-size: 2.0em;
+  font-size: 2.5em;
   margin-bottom: 1em;
   display: flex;
   flex-wrap: wrap;
   flex: 1 1 5%;
   flex-direction: column;
-  row-gap: 8px;
+  row-gap: 10px;
 }
-
+.button-definitions {
+  font-size: .6em;
+  max-width: 200px;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  border-radius: 12px;
+  font-family: 'Lato', sans-serif;
+  margin: auto;
+}
 .list-Item {
   list-style: none;
   font-size: 0.7em;

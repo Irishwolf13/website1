@@ -93,8 +93,11 @@ function getNewRandomWord() {
     currentWord = myArrayOfWords[myRandomNumber]
 }
 function adjustMainWord(gameWord, gameMode) {
-    myWordDisplay.innerHTML = gameWord
+    myWordDisplay.innerHTML = `Definition: ${gameWord}`
     gameDifficulty.innerHTML = gameMode
+    let definitionHelperText = document.createElement('p')
+    definitionHelperText.textContent = "Select the word below that best fits the definition"
+    myWordDisplay.appendChild(definitionHelperText)
 }
 function setPoints(myPoints) {
     gameCircle.style.visibility = 'visible'
