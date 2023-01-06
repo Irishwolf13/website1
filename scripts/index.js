@@ -26,6 +26,7 @@ let _nextAudio = ''
 let _currentAudio = ''
 let _highScores = [];
 let _scoreArray = [];
+let _multipleCount = 4;
 let optionsVisible = false;
 let gameStarted = false;
 let timeRun = document.querySelector('.realTimer');
@@ -197,16 +198,19 @@ function switchDificulty(button) {
             optionDifMedium.id = ''
             optionDifHard.id = ''
             timeCurrent = timeEasy
+            _multipleCount = 3
         break
         case'medium':
             optionDifEasy.id = ''
             optionDifHard.id = ''
             timeCurrent = timeMedium
+            _multipleCount = 4
         break
         case 'hard':
             optionDifEasy.id = ''
             optionDifMedium.id = ''
             timeCurrent = timeHard
+            _multipleCount = 5
         break
     }
 }

@@ -22,7 +22,7 @@ function getWordMultipleChoice(myWord) {
     newArray[myNumber] = myWord
 
     adjustMainWord(`${_currentAPIdefinitions[0]}`, 'Multiple')
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < _multipleCount; i++) {
         let button = document.createElement('button')
         button.innerText = newArray[i]
         button.id = newArray[i]
