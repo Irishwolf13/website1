@@ -503,6 +503,62 @@
       "difficulty": "easy",
       "score": 0,
       "id": 72
+    },
+    {
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "easy",
+      "score": 0,
+      "id": 73
+    },
+    {
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "easy",
+      "score": 0,
+      "id": 74
+    },
+    {
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "easy",
+      "score": 100,
+      "id": 75
+    },
+    {
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "easy",
+      "score": 0,
+      "id": 76
+    },
+    {
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "easy",
+      "score": 0,
+      "id": 77
+    },
+    {
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "easy",
+      "score": 0,
+      "id": 78
+    },
+    {
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "hard",
+      "score": 600,
+      "id": 79
+    },
+    {
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "easy",
+      "score": 0,
+      "id": 80
     }
   ]
 }

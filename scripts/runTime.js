@@ -113,7 +113,9 @@ function displayTimer() {
 //-------------------time out function---------------------
 function endTime() {
     const nextButton = document.querySelector('.nextButton');
-    nextButton.remove();
+    if (nextButton) {
+        nextButton.remove();
+    }
     audioButton.style.visibility = 'hidden';
     myWordDisplay.innerHTML = '';
     removeElementsFromDOM(listContainer)    // Clears DOM for the following appends

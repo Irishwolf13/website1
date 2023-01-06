@@ -45,11 +45,14 @@ function getWordMultipleChoice(myWord) {
                 setTimeout(function(){
                     e.target.style.background = "white";
                     clickedButton.style.background = "palegreen"
+                    setTimeout(function(){
+                        getWordMultipleChoice(currentWord)
+                    }, 700);
                   }, 500);
                 }
             }
         })
         listContainer.appendChild(button)
     }
-    setNavButtons()
+    //setNavButtons()
 }
