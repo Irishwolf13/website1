@@ -30,7 +30,6 @@ optionStartButton.addEventListener('click', () => {
         timeSection.style.visibility = 'visible';
         timerFunc()
     }
-    getHighScores()
 })
 
 function loadCurrentGame() {
@@ -82,7 +81,6 @@ const timerFunc =
             timeSecond--;
             timeRun.innerHTML = fancyTimeFormat(timeSecond);
         } else {
-            console.log('still running')
             clearInterval(countDown) 
             endTime()
         }
@@ -114,58 +112,15 @@ function displayTimer() {
         
 //-------------------time out function---------------------
 function endTime() {
-    setHighScores()
+    const nextButton = document.querySelector('.nextButton');
+    nextButton.remove();
     audioButton.style.visibility = 'hidden';
-    audioButton.style.position = absolute;
     myWordDisplay.innerHTML = '';
     removeElementsFromDOM(listContainer)    // Clears DOM for the following appends
     removeElementsFromDOM(gameInput)        // Clears DOM for the following appends
     setPoints(numberOfPoints)  
-    const nextButton = document.querySelector('.nextButton');
-    nextButton.remove();
     timeRun.innerHTML = 'TIME OUT'
-    timesUp = document.createElement('div')
-    timesUp.className = "timesUp"
-//-----Game over image--------------------------------
-    const gameOver = document.createElement('img')
-    timesUp.appendChild(gameOver)
-    gameOver.src = "images/gameOver.png"
-    gameOver.className = "gameOver"
-//-----High Scores div--------------------------------
-    const highScoresContainer = document.createElement('div')
-    highScoresContainer.className = "highScoresContainer"
-    timesUp.appendChild(highScoresContainer)
-//------Point report--------------------------------
-    const pointsRecord = document.createElement('div')
-    pointsRecord.className = "pointsRecord"
-    pointsRecord.innerText = `Your Points: ${numberOfPoints}`
-    timesUp.appendChild(pointsRecord)
-//-----restart Button---------------------------------
-    const restartButton = document.createElement('button')
-    restartButton.className = "restartButton"
-    restartButton.innerText = "REPLAY"
-    restartButton.addEventListener('click', (myWord) => { 
-        timesUp.remove()
-        if (timerDisplay) {
-            timeSecond = timeCurrent;
-            timeRun.innerHTML = fancyTimeFormat(timeSecond);
-            timeSection.style.visibility = 'visible';
-            if (_currentGame == 'synonym') {
-                createSynonymGame(myWord)
-            } else if (_currentGame == 'definition') {
-                getWordMultipleChoice(myWord)
-            }
-            timerFunc()
-        } else {
-            if (_currentGame == 'synonym') {
-                createSynonymGame(currentWord)
-            } else if (_currentGame == 'definition') {
-                getWordMultipleChoice(currentWord)
-            }
-        }
-    })
-    timesUp.appendChild(restartButton)
-    middleArea.appendChild(timesUp)
+    setHighScores()
 }
 //------GET high scores for current user function-------------
 function getHighScores() {
@@ -183,9 +138,64 @@ function getHighScores() {
         response.forEach(e => {
             _highScores.push(e.score)
         });
+        //-----Game over image--------------------------------
+        timesUp = document.createElement('div')
+        timesUp.className = "timesUp"
+        const gameOver = document.createElement('img')
+        timesUp.appendChild(gameOver)
+        gameOver.src = "images/gameOver.png"
+        gameOver.className = "gameOver"
+        //-----High Scores div--------------------------------
+        const highScoresContainer = document.createElement('div')
+        highScoresContainer.className = "highScoresContainer"
+
+        let myDiv = document.createElement('div')
+        myDiv.innerHTML = `1st.  ${_highScores[0]}`
+        highScoresContainer.appendChild(myDiv)
+        myDiv = document.createElement('div')
+        myDiv.innerHTML = `2nd.  ${_highScores[1]}`
+        highScoresContainer.appendChild(myDiv)
+        myDiv = document.createElement('div')
+        myDiv.innerHTML = `3rd.  ${_highScores[2]}`
+        highScoresContainer.appendChild(myDiv)
+
+        timesUp.appendChild(highScoresContainer)
+        //------Point report--------------------------------
+        const pointsRecord = document.createElement('div')
+        pointsRecord.className = "pointsRecord"
+        pointsRecord.innerText = `Your Points: ${numberOfPoints}`
+        timesUp.appendChild(pointsRecord)
+        //-----restart Button---------------------------------
+        const restartButton = document.createElement('button')
+        restartButton.className = "restartButton"
+        restartButton.innerText = "REPLAY"
+        restartButton.addEventListener('click', (myWord) => { 
+            numberOfPoints = 0
+            setPoints(numberOfPoints)
+            timesUp.remove()
+            if (timerDisplay) {
+                timeSecond = timeCurrent;
+                timeRun.innerHTML = fancyTimeFormat(timeSecond);
+                timeSection.style.visibility = 'visible';
+                if (_currentGame == 'synonym') {
+                    createSynonymGame(currentWord)
+                } else if (_currentGame == 'definition') {
+                    getWordMultipleChoice(currentWord)
+                }
+                timerFunc()
+            } else {
+                if (_currentGame == 'synonym') {
+                    createSynonymGame(currentWord)
+                } else if (_currentGame == 'definition') {
+                    getWordMultipleChoice(currentWord)
+                }
+            }
+        })
+        timesUp.appendChild(restartButton)
+        middleArea.appendChild(timesUp)
     })
 }
-
+//------SET high scores for current user function-------------
 function setHighScores() {
     fetch('http://localhost:3000/scores', {
         method: "POST",
