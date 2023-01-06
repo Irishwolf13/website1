@@ -1,17 +1,158 @@
 {
-    "user": [
-        {
-            "id": 1,
-            "synonym": {
-                "easy": ["000","000","000"],
-                "medium": ["000","000","000"],
-                "hard": ["000","000","000"]
-            },
-            "definition": {
-                "easy": ["050","010","030"],
-                "medium": ["000","000","000"],
-                "hard": [ "000","000","000"]
-            }
-        }
-    ]
+  "scores": [
+    {
+      "id": 1,
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "easy",
+      "score": 200
+    },
+    {
+      "id": 2,
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "easy",
+      "score": 300
+    },
+    {
+      "id": 3,
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "easy",
+      "score": 350
+    },
+    {
+      "id": 4,
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "easy",
+      "score": 12
+    },
+    {
+      "id": 5,
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "medium",
+      "score": 0
+    },
+    {
+      "id": 6,
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "medium",
+      "score": 0
+    },
+    {
+      "id": 7,
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "medium",
+      "score": 0
+    },
+    {
+      "id": 8,
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "hard",
+      "score": 0
+    },
+    {
+      "id": 9,
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "hard",
+      "score": 0
+    },
+    {
+      "id": 10,
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "hard",
+      "score": 0
+    },
+    {
+      "id": 11,
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "easy",
+      "score": 0
+    },
+    {
+      "id": 12,
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "easy",
+      "score": 0
+    },
+    {
+      "id": 13,
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "easy",
+      "score": 0
+    },
+    {
+      "id": 14,
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "medium",
+      "score": 0
+    },
+    {
+      "id": 15,
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "medium",
+      "score": 0
+    },
+    {
+      "id": 16,
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "medium",
+      "score": 0
+    },
+    {
+      "id": 17,
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "hard",
+      "score": 0
+    },
+    {
+      "id": 18,
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "hard",
+      "score": 0
+    },
+    {
+      "id": 19,
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "hard",
+      "score": 0
+    },
+    {
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "hard",
+      "score": 0,
+      "id": 20
+    },
+    {
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "hard",
+      "score": 100,
+      "id": 21
+    },
+    {
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "hard",
+      "score": 700,
+      "id": 22
+    }
+  ]
 }

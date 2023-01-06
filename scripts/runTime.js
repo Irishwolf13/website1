@@ -30,6 +30,7 @@ optionStartButton.addEventListener('click', () => {
         timeSection.style.visibility = 'visible';
         timerFunc()
     }
+    getHighScores()
 })
 
 function loadCurrentGame() {
@@ -112,7 +113,7 @@ function displayTimer() {
         
 //-------------------time out function---------------------
 function endTime() {
-    // getHighScores()
+    setHighScores()
     audioButton.style.visibility = 'hidden';
     myWordDisplay.innerHTML = '';
     removeElementsFromDOM(listContainer)    // Clears DOM for the following appends
@@ -166,37 +167,38 @@ function endTime() {
 }
 //------GET high scores for current user function-------------
 function getHighScores() {
+    _highScores = []
     //GET function for grabbing high scores based on current game style and current difficulty level. stored in _highScores in index.js with all the other globally stored variables
-    // fetch(localUrl, {
-    //     method: "GET",
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json'
-    //     }
-    // })
-    // .then((apiReturn) => apiReturn.json())
-    // .then((response) => {
-    //     _scoreArray = response[0][_currentGame][_currentDifficulty]
-    //     if (numberOfPoints >= _scoreArray[0]) {
-    //         _scoreArray.splice(0, 1, numberOfPoints)
-    //     } else if (numberOfPoints >= _scoreArray[1]) {
-    //         _scoreArray.splice(1, 1, numberOfPoints)
-    //     } else if (numberOfPoints >= _scoreArray[2]) {
-    //         _scoreArray.splice(2, 1, numberOfPoints)
-    //     }
-    // })
-    // .then(response => {
-    //     let highScoreContainer = document.querySelector('.highScoresContainer')
-    //     let p = document.createElement('p')
-    //     p.innerText = `1st:  ${_scoreArray[0]}`
-    //     highScoreContainer.appendChild(p)
-    //     let p2 = document.createElement('p')
-    //     p2.innerText = `2nd:  ${_scoreArray[1]}`
-    //     highScoreContainer.appendChild(p2)
-    //     let p3 = document.createElement('p')
-    //     p3.innerText = `3rd:  ${_scoreArray[2]}`
-    //     highScoreContainer.appendChild(p3)
-    // })
+    fetch(`http://localhost:3000/scores?_sort=score&_order=desc&username=user1&gameType=${_currentGame}&difficulty=${_currentDifficulty}&_limit=3`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+    .then((apiReturn) => apiReturn.json())
+    .then((response) => {
+        response.forEach(e => {
+            _highScores.push(e.score)
+        });
+        console.log(_highScores)
+    })
+}
+
+function setHighScores() {
+    fetch('http://localhost:3000/scores', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body:JSON.stringify({
+            username: "user1",
+            gameType: _currentGame,
+            difficulty: _currentDifficulty,
+            score: numberOfPoints
+        })
+    })
+    .then(getHighScores())
 }
 
     
