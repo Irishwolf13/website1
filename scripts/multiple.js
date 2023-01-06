@@ -9,7 +9,7 @@ function getWordMultipleChoice(myWord) {
     setUpNewWord()
     let newArray = []
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < _multipleCount; i++) {
         let largeNumber = Math.floor(Math.random() * (myArrayOfWords.length - 1))
         let largeWord = myArrayOfWords[largeNumber]
         while (largeWord === myWord) {

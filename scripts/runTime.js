@@ -34,7 +34,7 @@ optionStartButton.addEventListener('click', () => {
 
 function loadCurrentGame() {
     gameStarted = true;
-    numberOfPoints = 110;
+    numberOfPoints = 0;
     numberFound = 0;
     setPoints(numberOfPoints)
     startButton.remove();
