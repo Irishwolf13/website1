@@ -60,6 +60,7 @@ const optionDifHard = document.querySelector('.hard')
 const darkModeSwitch = document.querySelector('#darkThemeSwitch input[type="checkbox"]')
 const timerSwitch = document.getElementById('timerSwitch')
 const timeSection = document.querySelector('.time-container');
+const mainTitleImage = document.querySelector('.synonymRollTitle')
 
 //This bit is for playing the mp3 file
 const audioButton = document.querySelector('.audioButton')
@@ -93,11 +94,16 @@ function getNewRandomWord() {
     currentWord = myArrayOfWords[myRandomNumber]
 }
 function adjustMainWord(gameWord, gameMode) {
-    myWordDisplay.innerHTML = `Definition: ${gameWord}`
+    myWordDisplay.innerHTML = gameWord
     gameDifficulty.innerHTML = gameMode
-    let definitionHelperText = document.createElement('p')
-    definitionHelperText.textContent = "Select the word below that best fits the definition"
-    myWordDisplay.appendChild(definitionHelperText)
+    myWordDisplay.style.fontSize = '3.2em'
+    if (gameMode == 'Definition') {
+        myWordDisplay.style.fontSize = '1.9em'
+        myWordDisplay.innerHTML = `Definition: ${gameWord}`
+        let definitionHelperText = document.createElement('p')
+        definitionHelperText.innerHTML = "Select the word below that best fits the definition"
+        myWordDisplay.appendChild(definitionHelperText)
+    }
 }
 function setPoints(myPoints) {
     gameCircle.style.visibility = 'visible'
@@ -228,9 +234,11 @@ optionDifHard.addEventListener('click', switchDificulty)
 function switchTheme(e) {
     if (e.target.checked) {
         document.documentElement.setAttribute('data-theme', 'light');
+        mainTitleImage.src = 'images/synRollLogo.png'
     }
     else {
         document.documentElement.setAttribute('data-theme', 'dark');
+        mainTitleImage.src = 'images/synonym-roll-dark.png'
     }    
 }
 darkModeSwitch.addEventListener('change', switchTheme, false)
