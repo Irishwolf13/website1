@@ -112,7 +112,7 @@ function displayTimer() {
         
 //-------------------time out function---------------------
 function endTime() {
-    getHighScores()
+    // getHighScores()
     audioButton.style.visibility = 'hidden';
     myWordDisplay.innerHTML = '';
     removeElementsFromDOM(listContainer)    // Clears DOM for the following appends
@@ -167,24 +167,24 @@ function endTime() {
 //------GET high scores for current user function-------------
 function getHighScores() {
     //GET function for grabbing high scores based on current game style and current difficulty level. stored in _highScores in index.js with all the other globally stored variables
-    fetch(localUrl, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-    })
-    .then((apiReturn) => apiReturn.json())
-    .then((response) => {
-        _scoreArray = response[0][_currentGame][_currentDifficulty]
-        if (numberOfPoints >= _scoreArray[0]) {
-            _scoreArray.splice(0, 1, numberOfPoints)
-        } else if (numberOfPoints >= _scoreArray[1]) {
-            _scoreArray.splice(1, 1, numberOfPoints)
-        } else if (numberOfPoints >= _scoreArray[2]) {
-            _scoreArray.splice(2, 1, numberOfPoints)
-        }
-    })
+    // fetch(localUrl, {
+    //     method: "GET",
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Accept': 'application/json'
+    //     }
+    // })
+    // .then((apiReturn) => apiReturn.json())
+    // .then((response) => {
+    //     _scoreArray = response[0][_currentGame][_currentDifficulty]
+    //     if (numberOfPoints >= _scoreArray[0]) {
+    //         _scoreArray.splice(0, 1, numberOfPoints)
+    //     } else if (numberOfPoints >= _scoreArray[1]) {
+    //         _scoreArray.splice(1, 1, numberOfPoints)
+    //     } else if (numberOfPoints >= _scoreArray[2]) {
+    //         _scoreArray.splice(2, 1, numberOfPoints)
+    //     }
+    // })
     // .then(response => {
     //     let highScoreContainer = document.querySelector('.highScoresContainer')
     //     let p = document.createElement('p')
