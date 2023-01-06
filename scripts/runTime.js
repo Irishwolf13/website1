@@ -104,6 +104,7 @@ function displayTimer() {
     if (timerDisplay) {
         timeSection.style.visibility = 'hidden'
         timerDisplay = false
+        clearInterval(countDown)
     } else {
         timeSection.style.display = 'visible'
         timerDisplay = true

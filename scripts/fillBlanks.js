@@ -97,7 +97,7 @@ function foundWord(e) {
         wordHints[myLowerCase] = (myLowerCase.length +1);
         setPoints(numberOfPoints)
     }else {
-        e.target.name.style.backgroundColor = "red"
+        e.target.name.style.backgroundColor = "salmon"
         setTimeout(function(){
             e.target.name.style.backgroundColor = "white";
           }, 500);

@@ -3,6 +3,10 @@ function getWordMultipleChoice(myWord) {
     audioButton.style.position = 'absolute'
     removeElementsFromDOM(gameInput)
     removeElementsFromDOM(listContainer)
+    const nextButton = document.querySelector('.nextButton');
+    if (nextButton) {
+        nextButton.remove();
+    }
     setPoints(numberOfPoints)
     listContainer.classList.remove('synonym-List')
     listContainer.classList.add('synonym-List-Multiple')

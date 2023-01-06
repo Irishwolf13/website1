@@ -559,6 +559,27 @@
       "difficulty": "easy",
       "score": 0,
       "id": 80
+    },
+    {
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "easy",
+      "score": 1100,
+      "id": 81
+    },
+    {
+      "username": "user1",
+      "gameType": "definition",
+      "difficulty": "easy",
+      "score": 0,
+      "id": 82
+    },
+    {
+      "username": "user1",
+      "gameType": "synonym",
+      "difficulty": "easy",
+      "score": 0,
+      "id": 83
     }
   ]
 }
