@@ -81,9 +81,10 @@ const timerFunc =
         if(timeSecond > 0) {
             timeSecond--;
             timeRun.innerHTML = fancyTimeFormat(timeSecond);
-        } else { 
-            endTime()
+        } else {
+            console.log('still running')
             clearInterval(countDown) 
+            endTime()
         }
     },1000)}
 
@@ -115,6 +116,7 @@ function displayTimer() {
 function endTime() {
     setHighScores()
     audioButton.style.visibility = 'hidden';
+    audioButton.style.position = absolute;
     myWordDisplay.innerHTML = '';
     removeElementsFromDOM(listContainer)    // Clears DOM for the following appends
     removeElementsFromDOM(gameInput)        // Clears DOM for the following appends
@@ -181,7 +183,6 @@ function getHighScores() {
         response.forEach(e => {
             _highScores.push(e.score)
         });
-        console.log(_highScores)
     })
 }
 

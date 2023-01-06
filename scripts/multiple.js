@@ -1,5 +1,6 @@
 function getWordMultipleChoice(myWord) {
     audioButton.style.visibility = 'hidden'
+    audioButton.style.position = 'absolute'
     removeElementsFromDOM(gameInput)
     removeElementsFromDOM(listContainer)
     setPoints(numberOfPoints)

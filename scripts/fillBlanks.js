@@ -7,6 +7,7 @@ let numberFound = 0
 // This is for Synonym gamestyle
 function createSynonymGame(myWord) {
     audioButton.style.visibility = 'visible'
+    audioButton.style.position = 'relative'
     removeElementsFromDOM(listContainer)    // Clears DOM for the following appends
     removeElementsFromDOM(gameInput)        // Clears DOM for the following appends
     setPoints(numberOfPoints)  

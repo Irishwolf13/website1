@@ -142,17 +142,10 @@
     },
     {
       "username": "user1",
-      "gameType": "definition",
+      "gameType": "synonym",
       "difficulty": "hard",
-      "score": 100,
+      "score": 0,
       "id": 21
-    },
-    {
-      "username": "user1",
-      "gameType": "definition",
-      "difficulty": "hard",
-      "score": 700,
-      "id": 22
     }
   ]
 }
