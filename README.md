@@ -1,5 +1,5 @@
 # Synonym Rolls
-Phase 1 Project by John Rooney, Matthew Williams, Rachel Jung, and Jess Andrade
+By John Rooney, Matthew Williams, Rachel Jung, and Jess Andrade
 
 ### Project Information
 This is the final project for Phase 1 as part of the Flatiron School's Software Engineering track. Over the course of a week and a half, our team of four created a mini-suite of word games that includes a synonym-based game and a definition-based game that leverages the Free Dictionary API.
