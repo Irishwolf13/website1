@@ -1,8 +1,8 @@
 # Synonym Rolls
 By John Rooney, Matthew Williams, Rachel Jung, and Jess Andrade
 
-### Project Information
-This is the final project for Phase 1 as part of the Flatiron School's Software Engineering track. Over the course of a week and a half, our team of four created a mini-suite of word games that includes a synonym-based game and a definition-based game that leverages the Free Dictionary API.
+### Game Information
+A mini-suite of word games that includes a synonym-based game and a definition-based game that leverages the Free Dictionary API.
 
 ### MVP Overview
 A user must select their options from the menu before getting started with Synonym Rolls. Menu options include two fun word game types: synonyms or definitions, difficulty level, a timer, and Dark Mode. If a user chooses the synonym game type, they can enter as many synonyms as they can towards a randomly generated word with the ability to use hints. The definition game allows users to select the correct word based on randomly generated definitions. Check out game screenshots below!
